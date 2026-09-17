@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Team rocket team charter for CIS 5040 — Human-Centered Design.">
+  <title>Team rocket | Team Charter</title>
+
+  <!-- Space Grotesk is loaded from Google Fonts. The fallbacks keep the page readable offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. DESIGN TOKENS — change these values to restyle the page
+       ========================================================= */
+    :root {
+      --slate-950: #172033;
+      --slate-900: #202a44;
+      --slate-800: #293653;
+      --blue-600: #5367b7;
+      --blue-500: #687bd0;
+      --blue-100: #e9edff;
+      --steel-700: #475569;
+      --steel-500: #64748b;
+      --steel-300: #cbd5e1;
+      --steel-200: #e2e8f0;
+      --steel-100: #f1f5f9;
+      --white: #ffffff;
+      --warning-bg: #fff8e8;
+      --warning-border: #c18401;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow: 0 16px 44px rgba(23, 32, 51, 0.10);
+      --page-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--slate-950);
+      background:
+        radial-gradient(circle at 90% 5%, rgba(104, 123, 208, 0.15), transparent 25rem),
+        var(--steel-100);
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue-600); }
+    a:hover { color: var(--slate-900); }
+    a:focus-visible {
+      outline: 3px solid var(--blue-500);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      color: var(--white);
+      background: var(--slate-950);
+      border-radius: 8px;
+      transform: translateY(-150%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* =========================================================
+       2. TOP NAVIGATION
+       ========================================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      color: var(--white);
+      background: rgba(23, 32, 51, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-wrap {
+      width: min(calc(100% - 32px), var(--page-width));
+      min-height: 66px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      color: var(--white);
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      aspect-ratio: 1;
+      place-items: center;
+      background: var(--blue-500);
+      border-radius: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      padding: 8px 10px;
+      color: #dce4ef;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-links a.nav-link--highlight { color: #ff4d4d; }
+    .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
+
+    /* =========================================================
+       3. HERO
+       ========================================================= */
+    .hero {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--slate-950), var(--slate-800));
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(calc(100% - 32px), var(--page-width));
+      margin-inline: auto;
+      padding: 88px 0 78px;
+    }
+
+    .hero-inner::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -170px;
+      width: 430px;
+      aspect-ratio: 1;
+      border: 72px solid rgba(104, 123, 208, 0.20);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #bbc6fa;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(2.5rem, 8vw, 5.25rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-summary {
+      max-width: 640px;
+      margin: 24px 0 30px;
+      color: #dce4ef;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .meta li {
+      padding: 7px 12px;
+      color: #eef1ff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       4. CONTENT AND CARDS
+       ========================================================= */
+    main {
+      width: min(calc(100% - 32px), var(--page-width));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    .section {
+      margin-bottom: 56px;
+      scroll-margin-top: 90px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .section-number {
+      display: grid;
+      width: 42px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--white);
+      background: var(--blue-600);
+      border-radius: 11px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .section-kicker {
+      margin: 3px 0 0;
+      color: var(--steel-500);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid--members { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 1px 2px rgba(23, 32, 51, 0.03);
+    }
+
+    .card--featured {
+      grid-column: 1 / -1;
+      border-top: 4px solid var(--blue-600);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--slate-900);
+      font-size: 1rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .card p { margin: 0; color: var(--steel-700); }
+
+    .member-card { min-width: 0; }
+    .member-initial {
+      display: grid;
+      width: 42px;
+      aspect-ratio: 1;
+      margin-bottom: 16px;
+      place-items: center;
+      color: var(--blue-600);
+      background: var(--blue-100);
+      border-radius: 50%;
+      font-weight: 700;
+    }
+    .member-card h3 { font-size: 1.05rem; }
+    .contact {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 6px;
+      overflow-wrap: anywhere;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .incomplete-note {
+      display: block;
+      margin-top: 16px;
+      padding: 10px 12px;
+      color: #6b4c00;
+      background: var(--warning-bg);
+      border-left: 4px solid var(--warning-border);
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .process-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: process;
+    }
+    .process-list li {
+      position: relative;
+      padding: 0 0 22px 46px;
+      counter-increment: process;
+    }
+    .process-list li:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      top: 32px;
+      bottom: 2px;
+      left: 15px;
+      width: 2px;
+      background: var(--steel-200);
+    }
+    .process-list li::after {
+      content: counter(process);
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: grid;
+      width: 32px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--white);
+      background: var(--blue-600);
+      border-radius: 50%;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .process-list strong { display: block; margin-bottom: 3px; color: var(--slate-900); }
+    .process-list span { color: var(--steel-700); }
+
+    /* Interview note form and saved entries */
+    .notes-intro { margin-bottom: 18px; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .form-field { display: grid; gap: 7px; }
+    .form-field--wide { grid-column: 1 / -1; }
+    label { color: var(--slate-900); font-size: 0.88rem; font-weight: 700; }
+    input, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      color: var(--slate-950);
+      background: var(--white);
+      border: 1px solid var(--steel-300);
+      border-radius: 8px;
+      font: inherit;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    input:focus, textarea:focus {
+      outline: 3px solid rgba(83, 103, 183, 0.24);
+      border-color: var(--blue-600);
+    }
+    .form-actions, .notes-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 15px;
+      color: var(--white);
+      background: var(--blue-600);
+      border: 1px solid var(--blue-600);
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .button:hover { background: var(--slate-900); border-color: var(--slate-900); }
+    .button--secondary { color: var(--slate-900); background: var(--white); border-color: var(--steel-300); }
+    .button--secondary:hover { color: var(--white); }
+    .button--danger { color: #9b1c1c; background: var(--white); border-color: #efb4b4; }
+    .button--danger:hover { color: var(--white); background: #9b1c1c; border-color: #9b1c1c; }
+    .storage-note { color: var(--steel-500); font-size: 0.82rem; }
+    .saved-notes { display: grid; gap: 16px; margin-top: 18px; }
+    .saved-note { position: relative; padding-right: 112px; }
+    .saved-note h3 { margin-bottom: 3px; font-size: 1.12rem; }
+    .saved-note-meta { margin-bottom: 14px !important; color: var(--steel-500) !important; font-size: 0.84rem; }
+    .note-block { margin-top: 13px; }
+    .note-block strong { display: block; color: var(--slate-900); font-size: 0.82rem; }
+    .note-block p { white-space: pre-wrap; }
+    .delete-note { position: absolute; top: 20px; right: 20px; }
+    .empty-state {
+      padding: 32px;
+      color: var(--steel-500);
+      background: var(--white);
+      border: 1px dashed var(--steel-300);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .status-message { min-height: 1.4em; color: var(--blue-600); font-size: 0.84rem; font-weight: 600; }
+
+    footer {
+      padding: 28px 16px;
+      color: #dce4ef;
+      background: var(--slate-950);
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    /* =========================================================
+       5. RESPONSIVE LAYOUT
+       ========================================================= */
+    @media (max-width: 900px) {
+      .grid--members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-wrap { align-items: flex-start; flex-direction: column; gap: 8px; padding: 12px 0; }
+      .nav-links { width: 100%; margin-left: 0; }
+      html { scroll-padding-top: 126px; }
+    }
+
+    @media (max-width: 620px) {
+      body { line-height: 1.6; }
+      .hero-inner { padding: 58px 0 52px; }
+      .hero-inner::after { display: none; }
+      main { padding-top: 40px; }
+      .section { margin-bottom: 44px; }
+      .grid, .grid--members { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-field--wide { grid-column: auto; }
+      .card { padding: 20px; }
+      .saved-note { padding-right: 20px; }
+      .delete-note { position: static; margin-top: 16px; }
+      .nav-links a { padding-left: 6px; padding-right: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      .site-header, .skip-link { display: none; }
+      body { background: var(--white); font-size: 11pt; }
+      .hero { color: var(--slate-950); background: var(--white); border-bottom: 2px solid var(--slate-950); }
+      .hero-inner { padding: 30px 0; }
+      .hero-summary, .eyebrow { color: var(--steel-700); }
+      .meta li { color: var(--slate-950); border-color: var(--steel-300); }
+      main { padding: 30px 0; }
+      .card { break-inside: avoid; box-shadow: none; }
+      .section { break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to team charter</a>
+
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Team charter sections">
+      <a class="brand" href="#top" aria-label="Team rocket home">
+        <span class="brand-mark" aria-hidden="true">TR</span>
+        <span>Team rocket</span>
+      </a>
+      <div class="nav-links">
+        <a href="#team">Team</a>
+        <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
+        <a href="#communication">Communication</a>
+        <a href="#decisions">Decisions</a>
+        <a href="#agreements">Agreements</a>
+        <a href="#conflict">Conflict</a>
+        <a href="#success">Success</a>
+        <a href="#purpose">Purpose</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">CIS 5040 · Human-Centered Design</p>
+      <h1>Team Rocket</h1>
+      <p class="hero-summary">A shared guide for how Team rocket communicates, makes decisions, works together, resolves conflict, and defines success.</p>
+      <ul class="meta" aria-label="Charter details">
+        <li>Team: Team rocket</li>
+        <li>Date: September 7, 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="section" id="team" aria-labelledby="team-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">01</span>
+        <div>
+          <h2 id="team-title">Team Identity</h2>
+          <p class="section-kicker">Members &amp; Contacts</p>
+        </div>
+      </div>
+      <div class="grid grid--members">
+        <article class="card member-card">
+          <span class="member-initial" aria-hidden="true">SJ</span>
+          <h3>Stacio Jackson</h3>
+          <a class="contact" href="mailto:sjacks39@calstatela.edu">sjacks39@calstatela.edu</a>
+          <a class="contact" href="tel:+19165988806">916-598-8806</a>
+        </article>
+        <article class="card member-card">
+          <span class="member-initial" aria-hidden="true">VM</span>
+          <h3>Vanessa Meraz</h3>
+          <a class="contact" href="mailto:vmeraz@calstatela.edu">vmeraz@calstatela.edu</a>
+          <a class="contact" href="tel:+13235136630">323-513-6630</a>
+        </article>
+        <article class="card member-card">
+          <span class="member-initial" aria-hidden="true">JM</span>
+          <h3>Justice Mann</h3>
+          <a class="contact" href="mailto:jmann13@calstatela.edu">jmann13@calstatela.edu</a>
+        </article>
+        <article class="card member-card">
+          <span class="member-initial" aria-hidden="true">ES</span>
+          <h3>Edward Salame</h3>
+          <a class="contact" href="mailto:esmale@calstatela.edu">esmale@calstatela.edu</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="interviews" aria-labelledby="interviews-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">02</span>
+        <div>
+          <h2 id="interviews-title">Client Interview Notes</h2>
+          <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
+        </div>
+      </div>
+
+      <article class="card card--featured notes-intro">
+        <form id="interview-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="meeting-date">Meeting date</label>
+              <input id="meeting-date" name="meetingDate" type="date" required>
+            </div>
+            <div class="form-field">
+              <label for="participants">Participants</label>
+              <input id="participants" name="participants" type="text" placeholder="Names of people at the meeting" required>
+            </div>
+            <div class="form-field form-field--wide">
+              <label for="feedback">Client feedback and observations</label>
+              <textarea id="feedback" name="feedback" placeholder="What did the client say or demonstrate?" required></textarea>
+            </div>
+            <div class="form-field">
+              <label for="decisions">Decisions made</label>
+              <textarea id="decisions" name="decisions" placeholder="Decisions or agreements from the meeting"></textarea>
+            </div>
+            <div class="form-field">
+              <label for="action-items">Action items and next steps</label>
+              <textarea id="action-items" name="actionItems" placeholder="Tasks, owners, and follow-up dates"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="button" type="submit">Save interview notes</button>
+            <button class="button button--secondary" type="reset">Clear form</button>
+            <span class="storage-note">Notes are saved in this browser on this device.</span>
+          </div>
+          <div class="status-message" id="status-message" role="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <div class="notes-toolbar">
+        <h3 style="margin: 0; margin-right: auto;">Saved interviews</h3>
+        <button class="button button--secondary" id="download-notes" type="button">Download notes backup</button>
+      </div>
+      <div class="saved-notes" id="saved-notes" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="communication" aria-labelledby="communication-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">03</span>
+        <div><h2 id="communication-title">Communication</h2></div>
+      </div>
+      <div class="grid">
+        <article class="card"><h3>Platform</h3><p>Microsoft Teams and Email</p></article>
+        <article class="card"><h3>Response time</h3><p>Within 12 hours weekdays or weekends</p></article>
+        <article class="card card--featured"><h3>Meetings</h3><p>We are mostly available during the daytime. We all have nighttime classes, and our times ranged from 12–2:00 p.m. to potentially start, then 5–6:00 p.m., and the latest of availability.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="decisions" aria-labelledby="decisions-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">04</span>
+        <div><h2 id="decisions-title">Decision-Making</h2></div>
+      </div>
+      <div class="grid">
+        <article class="card"><h3>How decisions are made</h3><p>We act as a democracy and listen to every perspective.</p></article>
+        <article class="card"><h3>How disagreements are handled</h3><p>We have a psych major and a team member who has experience being a mediator in group work.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="agreements" aria-labelledby="agreements-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">05</span>
+        <div><h2 id="agreements-title">Working Agreements</h2></div>
+      </div>
+      <div class="grid">
+        <article class="card"><h3>Participation</h3><p>Contribute ideas and experiences, and demonstrate effort through active listening and completing tasks.</p></article>
+        <article class="card"><h3>Accountability</h3><p>Message them and try to listen and help before judging.</p></article>
+        <article class="card card--featured"><h3>Deadlines</h3><p>Try to micromanage and communicate with the team and take time to take care of mental health.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="conflict" aria-labelledby="conflict-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">06</span>
+        <div><h2 id="conflict-title">Conflict Resolution</h2></div>
+      </div>
+      <article class="card card--featured">
+        <ol class="process-list">
+          <li><strong>Unresponsive teammate</strong><span>First text them and email. Once all ways of reaching out are exhausted, contact the professor as a last resort.</span></li>
+          <li><strong>How concerns are raised</strong><span>Usually through email first.</span></li>
+          <li><strong>When to involve the instructor</strong><span>If conflict is not manageable by team members and progress is halted immensely, then bring in the instructor.</span></li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="section" id="success" aria-labelledby="success-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">07</span>
+        <div><h2 id="success-title">Success Metrics</h2></div>
+      </div>
+      <div class="grid">
+        <article class="card card--featured"><h3>What will make us proud</h3><p>Not only an A, but creating a system that contributes to a viable resource for years.</p></article>
+        <article class="card card--featured"><h3>Behaviors that define success</h3><p>Being understanding, communicating, sharing perspectives, and having a positive and growth mindset.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="purpose" aria-labelledby="purpose-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">08</span>
+        <div><h2 id="purpose-title">Shared Purpose</h2></div>
+      </div>
+      <div class="grid">
+        <article class="card card--featured">
+          <h3>Goal</h3>
+          <p>We are trying to build an app that basically cleans up the data that is extracted from Penji (software that ELAC uses in its tutoring centers) and produces two Excel files, one for OIEA and A&amp;R. By making the positive attendance more automated, we hope it would lead to more accurate reporting as well as being used by departments and programs.</p>
+        </article>
+        <article class="card card--featured">
+          <h3>What success looks like</h3>
+          <p>Building the app and installing into the computers. Creating the manual/demo so others can</p>
+          <span class="incomplete-note">Content needs to be added to complete this statement.</span>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Team rocket · CIS 5040 · Human-Centered Design</span>
+  </footer>
+
+  <script>
+    /* The interview log uses localStorage, which saves data in this browser. */
+    const storageKey = "teamRocketInterviewNotes";
+    const form = document.querySelector("#interview-form");
+    const notesContainer = document.querySelector("#saved-notes");
+    const statusMessage = document.querySelector("#status-message");
+    const downloadButton = document.querySelector("#download-notes");
+
+    function getNotes() {
+      try { return JSON.parse(localStorage.getItem(storageKey)) || []; }
+      catch (error) { return []; }
+    }
+
+    function saveNotes(notes) {
+      localStorage.setItem(storageKey, JSON.stringify(notes));
+    }
+
+    function addTextBlock(parent, heading, text) {
+      if (!text) return;
+      const block = document.createElement("div");
+      block.className = "note-block";
+      const label = document.createElement("strong");
+      label.textContent = heading;
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      block.append(label, paragraph);
+      parent.append(block);
+    }
+
+    function renderNotes() {
+      const notes = getNotes();
+      notesContainer.replaceChildren();
+      downloadButton.disabled = notes.length === 0;
+
+      if (notes.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = "No interview notes have been saved yet.";
+        notesContainer.append(empty);
+        return;
+      }
+
+      notes.forEach((note) => {
+        const article = document.createElement("article");
+        article.className = "card saved-note";
+        const title = document.createElement("h3");
+        title.textContent = new Date(note.meetingDate + "T00:00:00").toLocaleDateString(undefined, {
+          year: "numeric", month: "long", day: "numeric"
+        });
+        const meta = document.createElement("p");
+        meta.className = "saved-note-meta";
+        meta.textContent = "Participants: " + note.participants;
+        article.append(title, meta);
+        addTextBlock(article, "Client feedback and observations", note.feedback);
+        addTextBlock(article, "Decisions made", note.decisions);
+        addTextBlock(article, "Action items and next steps", note.actionItems);
+
+        const remove = document.createElement("button");
+        remove.className = "button button--danger delete-note";
+        remove.type = "button";
+        remove.textContent = "Delete";
+        remove.setAttribute("aria-label", "Delete interview notes from " + title.textContent);
+        remove.addEventListener("click", () => {
+          if (confirm("Delete these interview notes? This cannot be undone.")) {
+            saveNotes(getNotes().filter((item) => item.id !== note.id));
+            renderNotes();
+            statusMessage.textContent = "Interview notes deleted.";
+          }
+        });
+        article.append(remove);
+        notesContainer.append(article);
+      });
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const notes = getNotes();
+      notes.unshift({
+        id: Date.now(),
+        meetingDate: data.get("meetingDate"),
+        participants: data.get("participants").trim(),
+        feedback: data.get("feedback").trim(),
+        decisions: data.get("decisions").trim(),
+        actionItems: data.get("actionItems").trim()
+      });
+      saveNotes(notes);
+      form.reset();
+      renderNotes();
+      statusMessage.textContent = "Interview notes saved successfully.";
+    });
+
+    downloadButton.addEventListener("click", () => {
+      const notes = getNotes();
+      if (!notes.length) return;
+      const text = notes.map((note, index) => [
+        "CLIENT INTERVIEW " + (index + 1),
+        "Meeting date: " + note.meetingDate,
+        "Participants: " + note.participants,
+        "",
+        "CLIENT FEEDBACK AND OBSERVATIONS",
+        note.feedback,
+        "",
+        "DECISIONS MADE",
+        note.decisions || "None recorded.",
+        "",
+        "ACTION ITEMS AND NEXT STEPS",
+        note.actionItems || "None recorded."
+      ].join("\n")).join("\n\n" + "-".repeat(60) + "\n\n");
+      const url = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Team-Rocket-Client-Interview-Notes.txt";
+      link.click();
+      URL.revokeObjectURL(url);
+      statusMessage.textContent = "Notes backup downloaded.";
+    });
+
+    renderNotes();
+  </script>
+</body>
+</html>
