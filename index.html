@@ -390,7 +390,7 @@
     .process-list strong { display: block; margin-bottom: 3px; color: var(--slate-900); }
     .process-list span { color: var(--steel-700); }
 
-    /* Editable project scope */
+    /* Editable project goal, scope, and resource links */
     .scope-intro { margin-bottom: 18px; }
     .scope-grid {
       display: grid;
@@ -401,6 +401,10 @@
     .scope-field--wide { grid-column: 1 / -1; }
     .scope-field textarea { min-height: 130px; }
     .scope-field--wide textarea { min-height: 105px; }
+    .resource-link-card { margin-bottom: 18px; }
+    .resource-link-form { display: grid; gap: 12px; }
+    .resource-link-field { display: grid; gap: 7px; }
+    .resource-link-field input { min-height: 52px; }
     .process-flow-card { margin-top: 18px; }
     .process-flow-card h3 { margin-bottom: 6px; }
     .process-flow-card > p { margin-bottom: 16px; }
@@ -481,6 +485,7 @@
       font: inherit;
       font-size: 0.88rem;
       font-weight: 700;
+      text-decoration: none;
     }
     .button:hover { background: var(--slate-900); border-color: var(--slate-900); }
     .button--secondary { color: var(--slate-900); background: var(--white); border-color: var(--steel-300); }
@@ -572,7 +577,9 @@
       <div class="nav-links">
         <a href="#team">TEAM</a>
         <a href="#team-charter">TEAM CHARTER</a>
-        <a href="#project-scope" class="nav-link--project">Project Scope</a>
+        <a href="#project-goal-scope" class="nav-link--project">Project Goal and Scope</a>
+        <a href="#personas">Personas</a>
+        <a href="#process-flow">Process Flow</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
       </div>
     </nav>
@@ -695,12 +702,12 @@
       </div>
     </section>
 
-    <section class="section" id="project-scope" aria-labelledby="project-scope-title">
+    <section class="section" id="project-goal-scope" aria-labelledby="project-goal-scope-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">03</span>
         <div>
-          <h2 id="project-scope-title">Project Scope</h2>
-          <p class="section-kicker">Define the project boundaries, outcomes, and process flow</p>
+          <h2 id="project-goal-scope-title">Project Goal and Scope</h2>
+          <p class="section-kicker">Define the project goal, boundaries, outcomes, and constraints</p>
         </div>
       </div>
 
@@ -733,17 +740,68 @@
             </div>
           </div>
           <div class="form-actions">
-            <button class="button" type="submit">Save project scope</button>
-            <button class="button button--secondary" id="clear-scope" type="button">Clear scope</button>
-            <span class="storage-note">Scope details are saved in this browser on this device.</span>
+            <button class="button" type="submit">Save project goal and scope</button>
+            <button class="button button--secondary" id="clear-scope" type="button">Clear goal and scope</button>
+            <span class="storage-note">Project details are saved in this browser on this device.</span>
           </div>
           <div class="status-message" id="scope-status" role="status" aria-live="polite"></div>
         </form>
       </article>
 
+    </section>
+
+    <section class="section" id="personas" aria-labelledby="personas-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">04</span>
+        <div>
+          <h2 id="personas-title">Personas</h2>
+          <p class="section-kicker">Save a link to the project personas</p>
+        </div>
+      </div>
+
+      <article class="card card--featured resource-link-card">
+        <form class="resource-link-form" id="personas-form">
+          <div class="resource-link-field">
+            <label for="personas-link">Personas</label>
+            <input id="personas-link" name="personasLink" type="url" inputmode="url" placeholder="https://...">
+          </div>
+          <div class="form-actions">
+            <button class="button" type="submit">Save personas link</button>
+            <button class="button button--secondary" id="open-personas-link" type="button">Open personas</button>
+            <span class="storage-note">The link is saved in this browser on this device.</span>
+          </div>
+          <div class="status-message" id="personas-status" role="status" aria-live="polite"></div>
+        </form>
+      </article>
+    </section>
+
+    <section class="section" id="process-flow" aria-labelledby="process-flow-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">05</span>
+        <div>
+          <h2 id="process-flow-title">Process Flow</h2>
+          <p class="section-kicker">Link to the process map or display the process-flow picture</p>
+        </div>
+      </div>
+
+      <article class="card card--featured resource-link-card">
+        <form class="resource-link-form" id="process-map-form">
+          <div class="resource-link-field">
+            <label for="process-map-link">Process Map</label>
+            <input id="process-map-link" name="processMapLink" type="url" inputmode="url" placeholder="https://...">
+          </div>
+          <div class="form-actions">
+            <button class="button" type="submit">Save process map link</button>
+            <button class="button button--secondary" id="open-process-map-link" type="button">Open process map</button>
+            <span class="storage-note">The link is saved in this browser on this device.</span>
+          </div>
+          <div class="status-message" id="process-map-status" role="status" aria-live="polite"></div>
+        </form>
+      </article>
+
       <article class="card process-flow-card">
-        <h3>Process Flow</h3>
-        <p>Upload the process-flow picture to display it in this section.</p>
+        <h3>Process-flow picture</h3>
+        <p>Upload a process-flow picture to display it directly on this page.</p>
         <div class="image-upload-row">
           <label class="button" for="process-flow-upload">Upload process-flow picture</label>
           <input id="process-flow-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
@@ -757,7 +815,7 @@
 
     <section class="section" id="interviews" aria-labelledby="interviews-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">04</span>
+        <span class="section-number" aria-hidden="true">06</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -811,12 +869,21 @@
   </footer>
 
   <script>
-    /* The editable project scope and process-flow picture are saved locally. */
+    /* Project details, resource links, and the process-flow picture are saved locally. */
     const scopeStorageKey = "teamRocketProjectScope";
+    const resourceLinksStorageKey = "teamRocketProjectResourceLinks";
     const processFlowStorageKey = "teamRocketProcessFlowImage";
     const scopeForm = document.querySelector("#scope-form");
     const scopeStatus = document.querySelector("#scope-status");
     const clearScopeButton = document.querySelector("#clear-scope");
+    const personasForm = document.querySelector("#personas-form");
+    const personasLink = document.querySelector("#personas-link");
+    const personasStatus = document.querySelector("#personas-status");
+    const openPersonasButton = document.querySelector("#open-personas-link");
+    const processMapForm = document.querySelector("#process-map-form");
+    const processMapLink = document.querySelector("#process-map-link");
+    const processMapStatus = document.querySelector("#process-map-status");
+    const openProcessMapButton = document.querySelector("#open-process-map-link");
     const processFlowUpload = document.querySelector("#process-flow-upload");
     const processFlowPreview = document.querySelector("#process-flow-preview");
     const processFlowEmpty = document.querySelector("#process-flow-empty");
@@ -841,15 +908,74 @@
         Array.from(data.entries(), ([name, value]) => [name, value.trim()])
       );
       localStorage.setItem(scopeStorageKey, JSON.stringify(scope));
-      scopeStatus.textContent = "Project scope saved successfully.";
+      scopeStatus.textContent = "Project goal and scope saved successfully.";
     });
 
     clearScopeButton.addEventListener("click", () => {
-      if (!confirm("Clear all saved project scope details?")) return;
+      if (!confirm("Clear all saved project goal and scope details?")) return;
       localStorage.removeItem(scopeStorageKey);
       scopeForm.reset();
-      scopeStatus.textContent = "Project scope cleared.";
+      scopeStatus.textContent = "Project goal and scope cleared.";
     });
+
+    function getResourceLinks() {
+      try { return JSON.parse(localStorage.getItem(resourceLinksStorageKey)) || {}; }
+      catch (error) { return {}; }
+    }
+
+    function saveResourceLink(key, value) {
+      const links = getResourceLinks();
+      links[key] = value;
+      localStorage.setItem(resourceLinksStorageKey, JSON.stringify(links));
+    }
+
+    function validWebAddress(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function handleLinkSave(event, key, input, status, label) {
+      event.preventDefault();
+      const value = input.value.trim();
+      if (value && !validWebAddress(value)) {
+        status.textContent = "Enter a complete web address beginning with http:// or https://.";
+        input.focus();
+        return;
+      }
+      saveResourceLink(key, value);
+      status.textContent = value ? label + " saved successfully." : label + " cleared.";
+    }
+
+    function openResourceLink(input, status) {
+      const value = input.value.trim();
+      if (!validWebAddress(value)) {
+        status.textContent = "Add and save a complete web address before opening it.";
+        input.focus();
+        return;
+      }
+      window.open(value, "_blank", "noopener,noreferrer");
+    }
+
+    personasForm.addEventListener("submit", (event) => {
+      handleLinkSave(event, "personasLink", personasLink, personasStatus, "Personas link");
+    });
+
+    processMapForm.addEventListener("submit", (event) => {
+      handleLinkSave(event, "processMapLink", processMapLink, processMapStatus, "Process map link");
+    });
+
+    openPersonasButton.addEventListener("click", () => openResourceLink(personasLink, personasStatus));
+    openProcessMapButton.addEventListener("click", () => openResourceLink(processMapLink, processMapStatus));
+
+    function loadResourceLinks() {
+      const links = getResourceLinks();
+      personasLink.value = links.personasLink || "";
+      processMapLink.value = links.processMapLink || "";
+    }
 
     function showProcessFlow(source) {
       if (source) {
@@ -1020,6 +1146,7 @@
     });
 
     loadScope();
+    loadResourceLinks();
     showProcessFlow(localStorage.getItem(processFlowStorageKey) || "");
     renderNotes();
   </script>
