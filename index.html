@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Team rocket team charter for CIS 5040 — Human-Centered Design.">
-  <title>Team rocket | Team Charter</title>
+  <meta name="description" content="Team Rocket's ELAC Reading & Tutoring Center human-centered design project hub and team charter.">
+  <title>Team Rocket | ELAC Project Hub</title>
 
   <!-- Space Grotesk is loaded from Google Fonts. The fallbacks keep the page readable offline. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,20 +19,21 @@
       --slate-950: #172033;
       --slate-900: #202a44;
       --slate-800: #293653;
-      --blue-600: #5367b7;
-      --blue-500: #687bd0;
-      --blue-100: #e9edff;
+      --blue-700: #3155a6;
+      --blue-600: #4169c1;
+      --blue-500: #6787d4;
+      --blue-100: #eaf0ff;
+      --gold-500: #f0b429;
+      --gold-100: #fff7dc;
       --steel-700: #475569;
       --steel-500: #64748b;
       --steel-300: #cbd5e1;
       --steel-200: #e2e8f0;
       --steel-100: #f1f5f9;
       --white: #ffffff;
-      --warning-bg: #fff8e8;
-      --warning-border: #c18401;
       --radius-lg: 18px;
       --radius-md: 12px;
-      --shadow: 0 16px 44px rgba(23, 32, 51, 0.10);
+      --shadow: 0 18px 50px rgba(23, 32, 51, 0.11);
       --page-width: 1120px;
     }
 
@@ -47,8 +48,8 @@
       margin: 0;
       color: var(--slate-950);
       background:
-        radial-gradient(circle at 90% 5%, rgba(104, 123, 208, 0.15), transparent 25rem),
-        var(--steel-100);
+        radial-gradient(circle at 92% 4%, rgba(65, 105, 193, 0.14), transparent 27rem),
+        linear-gradient(180deg, #f7f9fd 0%, var(--steel-100) 42%, #edf2f8 100%);
       font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 16px;
       line-height: 1.7;
@@ -136,7 +137,7 @@
       white-space: nowrap;
     }
     .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.09); }
-    .nav-links a.nav-link--project { color: #73b7ff; }
+    .nav-links a.nav-link--project { color: #7fc1ff; }
     .nav-links a.nav-link--project:hover { color: #a9d5ff; background: rgba(255, 255, 255, 0.09); }
     .nav-links a.nav-link--highlight { color: #ff4d4d; }
     .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
@@ -146,7 +147,9 @@
        ========================================================= */
     .hero {
       color: var(--white);
-      background: linear-gradient(135deg, var(--slate-950), var(--slate-800));
+      background:
+        radial-gradient(circle at 82% 35%, rgba(103, 135, 212, 0.42), transparent 24rem),
+        linear-gradient(135deg, #111a2c 0%, var(--slate-900) 58%, #273969 100%);
       overflow: hidden;
     }
 
@@ -154,7 +157,7 @@
       position: relative;
       width: min(calc(100% - 32px), var(--page-width));
       margin-inline: auto;
-      padding: 88px 0 78px;
+      padding: 92px 0 84px;
     }
 
     .hero-inner::after {
@@ -171,7 +174,7 @@
 
     .eyebrow {
       margin: 0 0 12px;
-      color: #bbc6fa;
+      color: #c6d5ff;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -290,32 +293,102 @@
     }
     .card p { margin: 0; color: var(--steel-700); }
 
-    .charter-grid {
+    /* Client overview */
+    .overview-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
+    .overview-card {
+      position: relative;
+      height: 175px;
+      padding: 24px 24px 24px 78px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-color: var(--steel-300) transparent;
+      scrollbar-width: thin;
+    }
+    .overview-card::-webkit-scrollbar { width: 6px; }
+    .overview-card::-webkit-scrollbar-track { background: transparent; }
+    .overview-card::-webkit-scrollbar-thumb {
+      background: var(--steel-300);
+      border-radius: 999px;
+    }
+    .overview-icon {
+      position: absolute;
+      top: 24px;
+      left: 22px;
+      display: grid;
+      width: 40px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--blue-700);
+      background: var(--blue-100);
+      border-radius: 11px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+    .overview-card h3 { margin-bottom: 7px; }
+    .overview-card--challenge { border-left: 4px solid var(--gold-500); }
+    .overview-card--challenge .overview-icon { color: #7a5600; background: var(--gold-100); }
 
-    .charter-topic {
-      padding: 24px;
+    /* Consolidated team charter accordions */
+    .accordion-stack { display: grid; gap: 12px; }
+    .accordion {
       background: var(--white);
       border: 1px solid var(--steel-200);
-      border-top: 4px solid var(--blue-600);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 28px rgba(23, 32, 51, 0.06);
+      overflow: hidden;
     }
-
-    .charter-topic h3 {
-      margin: 0 0 16px;
+    .accordion[open] { border-color: #c8d5f5; box-shadow: var(--shadow); }
+    .accordion summary {
+      position: relative;
+      display: flex;
+      min-height: 66px;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 58px 16px 20px;
       color: var(--slate-900);
-      font-size: 1.2rem;
-      line-height: 1.3;
+      cursor: pointer;
+      font-size: 1.02rem;
+      font-weight: 700;
+      list-style: none;
     }
-
-    .charter-topic .grid { grid-template-columns: 1fr; }
-    .charter-topic .card { padding: 18px; box-shadow: none; }
-    .charter-topic .card h3 { margin-bottom: 8px; font-size: 1rem; }
-    .charter-topic .card--featured { grid-column: auto; border-top-width: 1px; }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .accordion summary::after {
+      content: "+";
+      position: absolute;
+      right: 20px;
+      display: grid;
+      width: 30px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--blue-700);
+      background: var(--blue-100);
+      border-radius: 50%;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .accordion[open] summary::after { content: "−"; }
+    .accordion summary:hover { background: #f8faff; }
+    .accordion-label {
+      display: grid;
+      width: 34px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--white);
+      background: var(--blue-600);
+      border-radius: 9px;
+      font-size: 0.74rem;
+    }
+    .accordion-content { padding: 0 20px 20px; border-top: 1px solid var(--steel-100); }
+    .accordion-content > .grid,
+    .accordion-content > .grid--members,
+    .accordion-content > .process-list { margin-top: 18px; }
+    .accordion-content .card { padding: 18px; box-shadow: none; }
+    .accordion-content .card--featured { border-top-width: 1px; }
 
     .member-card { min-width: 0; }
     .member-initial {
@@ -338,18 +411,6 @@
       overflow-wrap: anywhere;
       font-size: 0.82rem;
       font-weight: 500;
-    }
-
-    .incomplete-note {
-      display: block;
-      margin-top: 16px;
-      padding: 10px 12px;
-      color: #6b4c00;
-      background: var(--warning-bg);
-      border-left: 4px solid var(--warning-border);
-      border-radius: 6px;
-      font-size: 0.84rem;
-      font-weight: 600;
     }
 
     .process-list {
@@ -493,14 +554,35 @@
     .button--danger { color: #9b1c1c; background: var(--white); border-color: #efb4b4; }
     .button--danger:hover { color: var(--white); background: #9b1c1c; border-color: #9b1c1c; }
     .storage-note { color: var(--steel-500); font-size: 0.82rem; }
-    .saved-notes { display: grid; gap: 16px; margin-top: 18px; }
-    .saved-note { position: relative; padding-right: 112px; }
+    .saved-notes {
+      display: grid;
+      height: 400px;
+      gap: 16px;
+      align-content: start;
+      margin-top: 18px;
+      padding: 14px;
+      overflow-y: scroll;
+      overscroll-behavior: contain;
+      background: #e9eef6;
+      border: 1px solid var(--steel-300);
+      border-radius: var(--radius-lg);
+      scrollbar-gutter: stable;
+    }
+    .saved-note { position: relative; padding-right: 225px; }
     .saved-note h3 { margin-bottom: 3px; font-size: 1.12rem; }
     .saved-note-meta { margin-bottom: 14px !important; color: var(--steel-500) !important; font-size: 0.84rem; }
     .note-block { margin-top: 13px; }
     .note-block strong { display: block; color: var(--slate-900); font-size: 0.82rem; }
     .note-block p { white-space: pre-wrap; }
-    .delete-note { position: absolute; top: 20px; right: 20px; }
+    .saved-note-actions {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: grid;
+      width: 185px;
+      gap: 8px;
+    }
+    .saved-note-actions .button { min-height: 38px; padding: 7px 10px; font-size: 0.78rem; }
     .empty-state {
       padding: 32px;
       color: var(--steel-500);
@@ -535,16 +617,23 @@
       .hero-inner::after { display: none; }
       main { padding-top: 40px; }
       .section { margin-bottom: 44px; }
-      .grid, .grid--members { grid-template-columns: 1fr; }
+      .grid, .grid--members, .overview-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
       .form-field--wide { grid-column: auto; }
       .scope-grid { grid-template-columns: 1fr; }
       .scope-field--wide { grid-column: auto; }
-      .charter-grid { grid-template-columns: 1fr; }
       .card { padding: 20px; }
       .saved-note { padding-right: 20px; }
-      .delete-note { position: static; margin-top: 16px; }
+      .saved-note-actions {
+        position: static;
+        display: flex;
+        width: auto;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
       .nav-links a { padding-left: 6px; padding-right: 6px; }
+      .overview-card { padding: 20px 20px 20px 72px; }
+      .overview-icon { top: 18px; left: 20px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -566,21 +655,21 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main-content">Skip to team charter</a>
+  <a class="skip-link" href="#main-content">Skip to project content</a>
 
   <header class="site-header">
-    <nav class="nav-wrap" aria-label="Team charter sections">
-      <a class="brand" href="#top" aria-label="Team rocket home">
+    <nav class="nav-wrap" aria-label="Project sections">
+      <a class="brand" href="#top" aria-label="Team Rocket project home">
         <span class="brand-mark" aria-hidden="true">TR</span>
-        <span>Team rocket</span>
+        <span>Team Rocket</span>
       </a>
       <div class="nav-links">
-        <a href="#team">TEAM</a>
-        <a href="#team-charter">TEAM CHARTER</a>
-        <a href="#project-goal-scope" class="nav-link--project">Project Goal and Scope</a>
+        <a href="#client-overview" class="nav-link--project">Client Overview</a>
+        <a href="#project-goal-scope">Project Goal and Scope</a>
         <a href="#personas">Personas</a>
         <a href="#process-flow">Process Flow</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
+        <a href="#team-charter">Team Charter</a>
       </div>
     </nav>
   </header>
@@ -589,122 +678,52 @@
     <div class="hero-inner">
       <p class="eyebrow">CIS 5040 · Human-Centered Design</p>
       <h1>Team Rocket</h1>
-      <p class="hero-summary">A shared guide for how Team rocket communicates, makes decisions, works together, resolves conflict, and defines success.</p>
+      <p class="hero-summary">Team Rocket's working space for the East Los Angeles College Reading &amp; Tutoring Center project—from client discovery and process mapping to project scope, interviews, and team agreements.</p>
       <ul class="meta" aria-label="Charter details">
-        <li>Team: Team rocket</li>
+        <li>Team: Team Rocket</li>
+        <li>Client: ELAC Reading &amp; Tutoring Center</li>
         <li>Date: September 7, 2026</li>
       </ul>
     </div>
   </div>
 
   <main id="main-content">
-    <section class="section" id="team" aria-labelledby="team-title">
+    <section class="section" id="client-overview" aria-labelledby="client-overview-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">01</span>
         <div>
-          <h2 id="team-title">Team Identity</h2>
-          <p class="section-kicker">Members &amp; Contacts</p>
-        </div>
-      </div>
-      <div class="grid grid--members">
-        <article class="card member-card">
-          <span class="member-initial" aria-hidden="true">SJ</span>
-          <h3>Stacio Jackson</h3>
-          <a class="contact" href="mailto:#####@calstatela.edu">sjacks39@calstatela.edu</a>
-          
-        </article>
-        <article class="card member-card">
-          <span class="member-initial" aria-hidden="true">VM</span>
-          <h3>Vanessa Meraz</h3>
-          <a class="contact" href="mailto:#####@calstatela.edu">vmeraz@calstatela.edu</a>
-          
-        </article>
-        <article class="card member-card">
-          <span class="member-initial" aria-hidden="true">JM</span>
-          <h3>Justice Mann</h3>
-          <a class="contact" href="mailto:#####@calstatela.edu">jmann13@calstatela.edu</a>
-        </article>
-        <article class="card member-card">
-          <span class="member-initial" aria-hidden="true">ES</span>
-          <h3>Edward Salame</h3>
-          <a class="contact" href="mailto:#####@calstatela.edu">esalame@calstatela.edu</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="team-charter" aria-labelledby="team-charter-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">02</span>
-        <div>
-          <h2 id="team-charter-title">Team Charter</h2>
-          <p class="section-kicker">How our team communicates, decides, collaborates, resolves conflict, and defines success</p>
+          <h2 id="client-overview-title">Client Overview</h2>
+          <p class="section-kicker">East Los Angeles College · Reading &amp; Tutoring Center</p>
         </div>
       </div>
 
-      <div class="charter-grid">
-        <section class="charter-topic" aria-labelledby="communication-title">
-          <h3 id="communication-title">Communication</h3>
-          <div class="grid">
-            <article class="card"><h3>Platform</h3><p>Microsoft Teams and Email</p></article>
-            <article class="card"><h3>Response time</h3><p>Within 12 hours weekdays or weekends</p></article>
-            <article class="card"><h3>Meetings</h3><p>We are mostly available during the daytime. We all have nighttime classes, and our times ranged from 12–2:00 p.m. to potentially start, then 5–6:00 p.m., and the latest of availability.</p></article>
-          </div>
-        </section>
-
-        <section class="charter-topic" aria-labelledby="decision-making-title">
-          <h3 id="decision-making-title">Decision-Making</h3>
-          <div class="grid">
-            <article class="card"><h3>How decisions are made</h3><p>We act as a democracy and listen to every perspective.</p></article>
-            <article class="card"><h3>How disagreements are handled</h3><p>We have a psych major and a team member who has experience being a mediator in group work.</p></article>
-          </div>
-        </section>
-
-        <section class="charter-topic" aria-labelledby="agreements-title">
-          <h3 id="agreements-title">Working Agreements</h3>
-          <div class="grid">
-            <article class="card"><h3>Participation</h3><p>Contribute ideas and experiences, and demonstrate effort through active listening and completing tasks.</p></article>
-            <article class="card"><h3>Accountability</h3><p>Message them and try to listen and help before judging.</p></article>
-            <article class="card"><h3>Deadlines</h3><p>Try to micromanage and communicate with the team and take time to take care of mental health.</p></article>
-          </div>
-        </section>
-
-        <section class="charter-topic" aria-labelledby="conflict-title">
-          <h3 id="conflict-title">Conflict Resolution</h3>
-          <ol class="process-list">
-            <li><strong>Unresponsive teammate</strong><span>First text them and email. Once all ways of reaching out are exhausted, contact the professor as a last resort.</span></li>
-            <li><strong>How concerns are raised</strong><span>Usually through email first.</span></li>
-            <li><strong>When to involve the instructor</strong><span>If conflict is not manageable by team members and progress is halted immensely, then bring in the instructor.</span></li>
-          </ol>
-        </section>
-
-        <section class="charter-topic" aria-labelledby="success-title">
-          <h3 id="success-title">Success Metrics</h3>
-          <div class="grid">
-            <article class="card"><h3>What will make us proud</h3><p>Not only an A, but creating a system that contributes to a viable resource for years.</p></article>
-            <article class="card"><h3>Behaviors that define success</h3><p>Being understanding, communicating, sharing perspectives, and having a positive and growth mindset.</p></article>
-          </div>
-        </section>
-
-        <section class="charter-topic" aria-labelledby="purpose-title">
-          <h3 id="purpose-title">Shared Purpose</h3>
-          <div class="grid">
-            <article class="card">
-              <h3>Goal</h3>
-              <p>We are trying to build an app that basically cleans up the data that is extracted from Penji (software that ELAC uses in its tutoring centers) and produces two Excel files, one for OIEA and A&amp;R. By making the positive attendance more automated, we hope it would lead to more accurate reporting as well as being used by departments and programs.</p>
-            </article>
-            <article class="card">
-              <h3>What success looks like</h3>
-              <p>Building the app and installing into the computers. Creating the manual/demo so others can</p>
-              <span class="incomplete-note">Content needs to be added to complete this statement.</span>
-            </article>
-          </div>
-        </section>
+      <div class="overview-grid">
+        <article class="card overview-card">
+          <span class="overview-icon" aria-hidden="true">01</span>
+          <h3>Client Background</h3>
+          <p>The project engagement centers on the reading and tutoring operations at East Los Angeles College (ELAC), supporting key administrative staff and lab directors like Maria Acosta.</p>
+        </article>
+        <article class="card overview-card">
+          <span class="overview-icon" aria-hidden="true">02</span>
+          <h3>Core Services &amp; Operations</h3>
+          <p>The reading center provides both in-person and virtual academic support sessions, utilizing tools like online chat systems (TalkTo) to connect students with tutors.</p>
+        </article>
+        <article class="card overview-card">
+          <span class="overview-icon" aria-hidden="true">03</span>
+          <h3>Data &amp; Tracking Workflow</h3>
+          <p>The center relies on attendance and scheduling platforms—historically transitioning through systems like ACE, Pisces, and currently Penji—to track student visits and compile positive attendance reports for institutional deans.</p>
+        </article>
+        <article class="card overview-card overview-card--challenge">
+          <span class="overview-icon" aria-hidden="true">04</span>
+          <h3>Current Challenges &amp; Bottlenecks</h3>
+          <p>Due to barcode scanners failing to consistently read student IDs or ink quality issues on cards — the center maintains a hybrid workflow using manual paper sign-in logs to verify attendance data accuracy. Staff members spend dedicated weekly hours reviewing, filtering, and cleaning raw data entries to ensure compliance and correct reporting.</p>
+        </article>
       </div>
     </section>
 
     <section class="section" id="project-goal-scope" aria-labelledby="project-goal-scope-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">03</span>
+        <span class="section-number" aria-hidden="true">02</span>
         <div>
           <h2 id="project-goal-scope-title">Project Goal and Scope</h2>
           <p class="section-kicker">Define the project goal, boundaries, outcomes, and constraints</p>
@@ -752,7 +771,7 @@
 
     <section class="section" id="personas" aria-labelledby="personas-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">04</span>
+        <span class="section-number" aria-hidden="true">03</span>
         <div>
           <h2 id="personas-title">Personas</h2>
           <p class="section-kicker">Save a link to the project personas</p>
@@ -790,7 +809,7 @@
 
     <section class="section" id="process-flow" aria-labelledby="process-flow-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">05</span>
+        <span class="section-number" aria-hidden="true">04</span>
         <div>
           <h2 id="process-flow-title">Process Flow</h2>
           <p class="section-kicker">Link to the process map or display the process-flow picture</p>
@@ -828,7 +847,7 @@
 
     <section class="section" id="interviews" aria-labelledby="interviews-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">06</span>
+        <span class="section-number" aria-hidden="true">05</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -875,10 +894,119 @@
       <div class="saved-notes" id="saved-notes" aria-live="polite"></div>
     </section>
 
+    <section class="section" id="team-charter" aria-labelledby="team-charter-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">06</span>
+        <div>
+          <h2 id="team-charter-title">Team Charter</h2>
+          <p class="section-kicker">Team members and working agreements consolidated into expandable panels</p>
+        </div>
+      </div>
+
+      <div class="accordion-stack">
+        <details class="accordion" open>
+          <summary><span class="accordion-label" aria-hidden="true">01</span>Team Members &amp; Contacts</summary>
+          <div class="accordion-content">
+            <div class="grid grid--members">
+              <article class="card member-card">
+                <span class="member-initial" aria-hidden="true">SJ</span>
+                <h3>Stacio Jackson</h3>
+                <a class="contact" href="mailto:sjacks39@calstatela.edu">sjacks39@calstatela.edu</a>
+              </article>
+              <article class="card member-card">
+                <span class="member-initial" aria-hidden="true">VM</span>
+                <h3>Vanessa Meraz</h3>
+                <a class="contact" href="mailto:vmeraz@calstatela.edu">vmeraz@calstatela.edu</a>
+              </article>
+              <article class="card member-card">
+                <span class="member-initial" aria-hidden="true">JM</span>
+                <h3>Justice Mann</h3>
+                <a class="contact" href="mailto:jmann13@calstatela.edu">jmann13@calstatela.edu</a>
+              </article>
+              <article class="card member-card">
+                <span class="member-initial" aria-hidden="true">ES</span>
+                <h3>Edward Salame</h3>
+                <a class="contact" href="mailto:esalame@calstatela.edu">esalame@calstatela.edu</a>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span class="accordion-label" aria-hidden="true">02</span>Shared Purpose</summary>
+          <div class="accordion-content">
+            <div class="grid">
+              <article class="card">
+                <h3>Goal</h3>
+                <p>We are trying to build an app that cleans the data extracted from Penji—the software ELAC uses in its tutoring centers—and produces two Excel files, one for OIEA and one for A&amp;R. By making positive-attendance reporting more automated, we hope to improve accuracy and support wider use by departments and programs.</p>
+              </article>
+              <article class="card">
+                <h3>What success looks like</h3>
+                <p>Building and installing the app on center computers, then creating a user manual and demonstration so others can use and maintain it.</p>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span class="accordion-label" aria-hidden="true">03</span>Communication</summary>
+          <div class="accordion-content">
+            <div class="grid">
+              <article class="card"><h3>Platform</h3><p>Microsoft Teams and email.</p></article>
+              <article class="card"><h3>Response time</h3><p>Within 12 hours on weekdays or weekends.</p></article>
+              <article class="card card--featured"><h3>Meetings</h3><p>We are mostly available during the daytime because team members have nighttime classes. Typical meeting windows range from 12:00–2:00 p.m. or 5:00–6:00 p.m.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span class="accordion-label" aria-hidden="true">04</span>Decision-Making</summary>
+          <div class="accordion-content">
+            <div class="grid">
+              <article class="card"><h3>How decisions are made</h3><p>We act as a democracy and listen to every perspective.</p></article>
+              <article class="card"><h3>How disagreements are handled</h3><p>We draw on the team's psychology background and prior experience mediating group work.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span class="accordion-label" aria-hidden="true">05</span>Working Agreements</summary>
+          <div class="accordion-content">
+            <div class="grid">
+              <article class="card"><h3>Participation</h3><p>Contribute ideas and experiences, practice active listening, and complete assigned tasks.</p></article>
+              <article class="card"><h3>Accountability</h3><p>Reach out, listen, and offer help before making judgments.</p></article>
+              <article class="card card--featured"><h3>Deadlines</h3><p>Communicate frequently, track work closely, and make room for team members to care for their mental health.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span class="accordion-label" aria-hidden="true">06</span>Conflict Resolution</summary>
+          <div class="accordion-content">
+            <ol class="process-list">
+              <li><strong>Unresponsive teammate</strong><span>First send a text and an email. After exhausting reasonable ways to reach the person, contact the professor as a last resort.</span></li>
+              <li><strong>How concerns are raised</strong><span>Usually through email first.</span></li>
+              <li><strong>When to involve the instructor</strong><span>If team members cannot manage the conflict and project progress is significantly halted, involve the instructor.</span></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span class="accordion-label" aria-hidden="true">07</span>Success Metrics</summary>
+          <div class="accordion-content">
+            <div class="grid">
+              <article class="card"><h3>What will make us proud</h3><p>Not only earning an A, but also creating a system that remains a viable resource for years.</p></article>
+              <article class="card"><h3>Behaviors that define success</h3><p>Being understanding, communicating, sharing perspectives, and maintaining a positive, growth-oriented mindset.</p></article>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <span>Team rocket · CIS 5040 · Human-Centered Design</span>
+    <span>Team Rocket · ELAC Reading &amp; Tutoring Center · CIS 5040</span>
   </footer>
 
   <script>
@@ -1126,6 +1254,34 @@
       parent.append(block);
     }
 
+    function formatNoteText(note, noteNumber) {
+      return [
+        "INTERVIEW NOTES " + noteNumber,
+        "Meeting date: " + note.meetingDate,
+        "Participants: " + note.participants,
+        "",
+        "CLIENT FEEDBACK AND OBSERVATIONS",
+        note.feedback,
+        "",
+        "DECISIONS MADE",
+        note.decisions || "None recorded.",
+        "",
+        "ACTION ITEMS AND NEXT STEPS",
+        note.actionItems || "None recorded."
+      ].join("\n");
+    }
+
+    function downloadTextFile(text, filename) {
+      const url = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+    }
+
     function renderNotes() {
       const notes = getNotes();
       notesContainer.replaceChildren();
@@ -1139,26 +1295,41 @@
         return;
       }
 
-      notes.forEach((note) => {
+      notes.forEach((note, index) => {
+        const noteNumber = index + 1;
+        const formattedDate = new Date(note.meetingDate + "T00:00:00").toLocaleDateString(undefined, {
+          year: "numeric", month: "long", day: "numeric"
+        });
         const article = document.createElement("article");
         article.className = "card saved-note";
         const title = document.createElement("h3");
-        title.textContent = new Date(note.meetingDate + "T00:00:00").toLocaleDateString(undefined, {
-          year: "numeric", month: "long", day: "numeric"
-        });
+        title.textContent = "Interview Notes " + noteNumber;
         const meta = document.createElement("p");
         meta.className = "saved-note-meta";
-        meta.textContent = "Participants: " + note.participants;
+        meta.textContent = "Meeting date: " + formattedDate + " · Participants: " + note.participants;
         article.append(title, meta);
         addTextBlock(article, "Client feedback and observations", note.feedback);
         addTextBlock(article, "Decisions made", note.decisions);
         addTextBlock(article, "Action items and next steps", note.actionItems);
 
+        const actions = document.createElement("div");
+        actions.className = "saved-note-actions";
+
+        const download = document.createElement("button");
+        download.className = "button button--secondary";
+        download.type = "button";
+        download.textContent = "Download Interview Notes " + noteNumber + ".txt";
+        download.setAttribute("aria-label", "Download Interview Notes " + noteNumber + " as a text file");
+        download.addEventListener("click", () => {
+          downloadTextFile(formatNoteText(note, noteNumber), "Interview Notes " + noteNumber + ".txt");
+          statusMessage.textContent = "Interview Notes " + noteNumber + ".txt downloaded.";
+        });
+
         const remove = document.createElement("button");
-        remove.className = "button button--danger delete-note";
+        remove.className = "button button--danger";
         remove.type = "button";
         remove.textContent = "Delete";
-        remove.setAttribute("aria-label", "Delete interview notes from " + title.textContent);
+        remove.setAttribute("aria-label", "Delete Interview Notes " + noteNumber + " from " + formattedDate);
         remove.addEventListener("click", () => {
           if (confirm("Delete these interview notes? This cannot be undone.")) {
             saveNotes(getNotes().filter((item) => item.id !== note.id));
@@ -1166,7 +1337,8 @@
             statusMessage.textContent = "Interview notes deleted.";
           }
         });
-        article.append(remove);
+        actions.append(download, remove);
+        article.append(actions);
         notesContainer.append(article);
       });
     }
@@ -1192,26 +1364,9 @@
     downloadButton.addEventListener("click", () => {
       const notes = getNotes();
       if (!notes.length) return;
-      const text = notes.map((note, index) => [
-        "CLIENT INTERVIEW " + (index + 1),
-        "Meeting date: " + note.meetingDate,
-        "Participants: " + note.participants,
-        "",
-        "CLIENT FEEDBACK AND OBSERVATIONS",
-        note.feedback,
-        "",
-        "DECISIONS MADE",
-        note.decisions || "None recorded.",
-        "",
-        "ACTION ITEMS AND NEXT STEPS",
-        note.actionItems || "None recorded."
-      ].join("\n")).join("\n\n" + "-".repeat(60) + "\n\n");
-      const url = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Team-Rocket-Client-Interview-Notes.txt";
-      link.click();
-      URL.revokeObjectURL(url);
+      const text = notes.map((note, index) => formatNoteText(note, index + 1))
+        .join("\n\n" + "-".repeat(60) + "\n\n");
+      downloadTextFile(text, "Team-Rocket-Client-Interview-Notes.txt");
       statusMessage.textContent = "Notes backup downloaded.";
     });
 
