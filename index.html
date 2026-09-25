@@ -773,6 +773,19 @@
           <div class="status-message" id="personas-status" role="status" aria-live="polite"></div>
         </form>
       </article>
+
+      <article class="card process-flow-card">
+        <h3>Personas image</h3>
+        <p>Upload a personas image to display it directly on this page.</p>
+        <div class="image-upload-row">
+          <label class="button" for="personas-image-upload">Upload personas image</label>
+          <input id="personas-image-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <button class="button button--danger" id="remove-personas-image" type="button">Remove image</button>
+        </div>
+        <div class="process-flow-empty" id="personas-image-empty">No personas image has been uploaded yet.</div>
+        <img class="process-flow-preview" id="personas-image-preview" alt="Project personas">
+        <div class="status-message" id="personas-image-status" role="status" aria-live="polite"></div>
+      </article>
     </section>
 
     <section class="section" id="process-flow" aria-labelledby="process-flow-title">
@@ -872,6 +885,7 @@
     /* Project details, resource links, and the process-flow picture are saved locally. */
     const scopeStorageKey = "teamRocketProjectScope";
     const resourceLinksStorageKey = "teamRocketProjectResourceLinks";
+    const personasImageStorageKey = "teamRocketPersonasImage";
     const processFlowStorageKey = "teamRocketProcessFlowImage";
     const scopeForm = document.querySelector("#scope-form");
     const scopeStatus = document.querySelector("#scope-status");
@@ -880,6 +894,11 @@
     const personasLink = document.querySelector("#personas-link");
     const personasStatus = document.querySelector("#personas-status");
     const openPersonasButton = document.querySelector("#open-personas-link");
+    const personasImageUpload = document.querySelector("#personas-image-upload");
+    const personasImagePreview = document.querySelector("#personas-image-preview");
+    const personasImageEmpty = document.querySelector("#personas-image-empty");
+    const personasImageStatus = document.querySelector("#personas-image-status");
+    const removePersonasImageButton = document.querySelector("#remove-personas-image");
     const processMapForm = document.querySelector("#process-map-form");
     const processMapLink = document.querySelector("#process-map-link");
     const processMapStatus = document.querySelector("#process-map-status");
@@ -976,6 +995,57 @@
       personasLink.value = links.personasLink || "";
       processMapLink.value = links.processMapLink || "";
     }
+
+    function showPersonasImage(source) {
+      if (source) {
+        personasImagePreview.src = source;
+        personasImagePreview.classList.add("is-visible");
+        personasImageEmpty.hidden = true;
+        removePersonasImageButton.disabled = false;
+      } else {
+        personasImagePreview.removeAttribute("src");
+        personasImagePreview.classList.remove("is-visible");
+        personasImageEmpty.hidden = false;
+        removePersonasImageButton.disabled = true;
+      }
+    }
+
+    personasImageUpload.addEventListener("change", () => {
+      const file = personasImageUpload.files[0];
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        personasImageStatus.textContent = "Please select an image file.";
+        personasImageUpload.value = "";
+        return;
+      }
+      if (file.size > 3000000) {
+        personasImageStatus.textContent = "Please use an image smaller than 3 MB.";
+        personasImageUpload.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          localStorage.setItem(personasImageStorageKey, reader.result);
+          showPersonasImage(reader.result);
+          personasImageStatus.textContent = "Personas image saved and displayed.";
+        } catch (error) {
+          showPersonasImage(reader.result);
+          personasImageStatus.textContent = "The image is displayed, but this browser could not save it. Try a smaller image.";
+        }
+      });
+      reader.readAsDataURL(file);
+    });
+
+    removePersonasImageButton.addEventListener("click", () => {
+      if (!personasImagePreview.getAttribute("src")) return;
+      if (!confirm("Remove the personas image?")) return;
+      localStorage.removeItem(personasImageStorageKey);
+      personasImageUpload.value = "";
+      showPersonasImage("");
+      personasImageStatus.textContent = "Personas image removed.";
+    });
 
     function showProcessFlow(source) {
       if (source) {
@@ -1147,6 +1217,7 @@
 
     loadScope();
     loadResourceLinks();
+    showPersonasImage(localStorage.getItem(personasImageStorageKey) || "");
     showProcessFlow(localStorage.getItem(processFlowStorageKey) || "");
     renderNotes();
   </script>
