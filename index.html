@@ -136,6 +136,8 @@
       white-space: nowrap;
     }
     .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-links a.nav-link--project { color: #73b7ff; }
+    .nav-links a.nav-link--project:hover { color: #a9d5ff; background: rgba(255, 255, 255, 0.09); }
     .nav-links a.nav-link--highlight { color: #ff4d4d; }
     .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
 
@@ -288,6 +290,33 @@
     }
     .card p { margin: 0; color: var(--steel-700); }
 
+    .charter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .charter-topic {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--steel-200);
+      border-top: 4px solid var(--blue-600);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .charter-topic h3 {
+      margin: 0 0 16px;
+      color: var(--slate-900);
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .charter-topic .grid { grid-template-columns: 1fr; }
+    .charter-topic .card { padding: 18px; box-shadow: none; }
+    .charter-topic .card h3 { margin-bottom: 8px; font-size: 1rem; }
+    .charter-topic .card--featured { grid-column: auto; border-top-width: 1px; }
+
     .member-card { min-width: 0; }
     .member-initial {
       display: grid;
@@ -360,6 +389,52 @@
     }
     .process-list strong { display: block; margin-bottom: 3px; color: var(--slate-900); }
     .process-list span { color: var(--steel-700); }
+
+    /* Editable project scope */
+    .scope-intro { margin-bottom: 18px; }
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .scope-field { display: grid; gap: 7px; }
+    .scope-field--wide { grid-column: 1 / -1; }
+    .scope-field textarea { min-height: 130px; }
+    .scope-field--wide textarea { min-height: 105px; }
+    .process-flow-card { margin-top: 18px; }
+    .process-flow-card h3 { margin-bottom: 6px; }
+    .process-flow-card > p { margin-bottom: 16px; }
+    .image-upload-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .image-upload-row input[type="file"] {
+      flex: 1 1 280px;
+      padding: 8px;
+      background: var(--steel-100);
+    }
+    .process-flow-preview {
+      display: none;
+      width: 100%;
+      max-height: 680px;
+      margin-top: 18px;
+      object-fit: contain;
+      background: var(--white);
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius-md);
+    }
+    .process-flow-preview.is-visible { display: block; }
+    .process-flow-empty {
+      margin-top: 18px;
+      padding: 30px;
+      color: var(--steel-500);
+      background: var(--steel-100);
+      border: 1px dashed var(--steel-300);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
 
     /* Interview note form and saved entries */
     .notes-intro { margin-bottom: 18px; }
@@ -458,6 +533,9 @@
       .grid, .grid--members { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
       .form-field--wide { grid-column: auto; }
+      .scope-grid { grid-template-columns: 1fr; }
+      .scope-field--wide { grid-column: auto; }
+      .charter-grid { grid-template-columns: 1fr; }
       .card { padding: 20px; }
       .saved-note { padding-right: 20px; }
       .delete-note { position: static; margin-top: 16px; }
@@ -492,14 +570,10 @@
         <span>Team rocket</span>
       </a>
       <div class="nav-links">
-        <a href="#team">Team</a>
+        <a href="#team">TEAM</a>
+        <a href="#team-charter">TEAM CHARTER</a>
+        <a href="#project-scope" class="nav-link--project">Project Scope</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
-        <a href="#communication">Communication</a>
-        <a href="#decisions">Decisions</a>
-        <a href="#agreements">Agreements</a>
-        <a href="#conflict">Conflict</a>
-        <a href="#success">Success</a>
-        <a href="#purpose">Purpose</a>
       </div>
     </nav>
   </header>
@@ -551,9 +625,139 @@
       </div>
     </section>
 
-    <section class="section" id="interviews" aria-labelledby="interviews-title">
+    <section class="section" id="team-charter" aria-labelledby="team-charter-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">02</span>
+        <div>
+          <h2 id="team-charter-title">Team Charter</h2>
+          <p class="section-kicker">How our team communicates, decides, collaborates, resolves conflict, and defines success</p>
+        </div>
+      </div>
+
+      <div class="charter-grid">
+        <section class="charter-topic" aria-labelledby="communication-title">
+          <h3 id="communication-title">Communication</h3>
+          <div class="grid">
+            <article class="card"><h3>Platform</h3><p>Microsoft Teams and Email</p></article>
+            <article class="card"><h3>Response time</h3><p>Within 12 hours weekdays or weekends</p></article>
+            <article class="card"><h3>Meetings</h3><p>We are mostly available during the daytime. We all have nighttime classes, and our times ranged from 12–2:00 p.m. to potentially start, then 5–6:00 p.m., and the latest of availability.</p></article>
+          </div>
+        </section>
+
+        <section class="charter-topic" aria-labelledby="decision-making-title">
+          <h3 id="decision-making-title">Decision-Making</h3>
+          <div class="grid">
+            <article class="card"><h3>How decisions are made</h3><p>We act as a democracy and listen to every perspective.</p></article>
+            <article class="card"><h3>How disagreements are handled</h3><p>We have a psych major and a team member who has experience being a mediator in group work.</p></article>
+          </div>
+        </section>
+
+        <section class="charter-topic" aria-labelledby="agreements-title">
+          <h3 id="agreements-title">Working Agreements</h3>
+          <div class="grid">
+            <article class="card"><h3>Participation</h3><p>Contribute ideas and experiences, and demonstrate effort through active listening and completing tasks.</p></article>
+            <article class="card"><h3>Accountability</h3><p>Message them and try to listen and help before judging.</p></article>
+            <article class="card"><h3>Deadlines</h3><p>Try to micromanage and communicate with the team and take time to take care of mental health.</p></article>
+          </div>
+        </section>
+
+        <section class="charter-topic" aria-labelledby="conflict-title">
+          <h3 id="conflict-title">Conflict Resolution</h3>
+          <ol class="process-list">
+            <li><strong>Unresponsive teammate</strong><span>First text them and email. Once all ways of reaching out are exhausted, contact the professor as a last resort.</span></li>
+            <li><strong>How concerns are raised</strong><span>Usually through email first.</span></li>
+            <li><strong>When to involve the instructor</strong><span>If conflict is not manageable by team members and progress is halted immensely, then bring in the instructor.</span></li>
+          </ol>
+        </section>
+
+        <section class="charter-topic" aria-labelledby="success-title">
+          <h3 id="success-title">Success Metrics</h3>
+          <div class="grid">
+            <article class="card"><h3>What will make us proud</h3><p>Not only an A, but creating a system that contributes to a viable resource for years.</p></article>
+            <article class="card"><h3>Behaviors that define success</h3><p>Being understanding, communicating, sharing perspectives, and having a positive and growth mindset.</p></article>
+          </div>
+        </section>
+
+        <section class="charter-topic" aria-labelledby="purpose-title">
+          <h3 id="purpose-title">Shared Purpose</h3>
+          <div class="grid">
+            <article class="card">
+              <h3>Goal</h3>
+              <p>We are trying to build an app that basically cleans up the data that is extracted from Penji (software that ELAC uses in its tutoring centers) and produces two Excel files, one for OIEA and A&amp;R. By making the positive attendance more automated, we hope it would lead to more accurate reporting as well as being used by departments and programs.</p>
+            </article>
+            <article class="card">
+              <h3>What success looks like</h3>
+              <p>Building the app and installing into the computers. Creating the manual/demo so others can</p>
+              <span class="incomplete-note">Content needs to be added to complete this statement.</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="project-scope" aria-labelledby="project-scope-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">03</span>
+        <div>
+          <h2 id="project-scope-title">Project Scope</h2>
+          <p class="section-kicker">Define the project boundaries, outcomes, and process flow</p>
+        </div>
+      </div>
+
+      <article class="card card--featured scope-intro">
+        <form id="scope-form">
+          <div class="scope-grid">
+            <div class="scope-field scope-field--wide">
+              <label for="scope-overview">Project overview</label>
+              <textarea id="scope-overview" name="overview" placeholder="Describe the project and the problem it will solve."></textarea>
+            </div>
+            <div class="scope-field">
+              <label for="scope-objectives">Objectives</label>
+              <textarea id="scope-objectives" name="objectives" placeholder="List the main goals and desired outcomes."></textarea>
+            </div>
+            <div class="scope-field">
+              <label for="scope-deliverables">Deliverables</label>
+              <textarea id="scope-deliverables" name="deliverables" placeholder="List the products, documents, or results the team will provide."></textarea>
+            </div>
+            <div class="scope-field">
+              <label for="scope-in">In scope</label>
+              <textarea id="scope-in" name="inScope" placeholder="What work and features are included?"></textarea>
+            </div>
+            <div class="scope-field">
+              <label for="scope-out">Out of scope</label>
+              <textarea id="scope-out" name="outOfScope" placeholder="What work and features are not included?"></textarea>
+            </div>
+            <div class="scope-field scope-field--wide">
+              <label for="scope-constraints">Constraints and assumptions</label>
+              <textarea id="scope-constraints" name="constraints" placeholder="Document deadlines, resources, dependencies, limitations, and assumptions."></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="button" type="submit">Save project scope</button>
+            <button class="button button--secondary" id="clear-scope" type="button">Clear scope</button>
+            <span class="storage-note">Scope details are saved in this browser on this device.</span>
+          </div>
+          <div class="status-message" id="scope-status" role="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <article class="card process-flow-card">
+        <h3>Process Flow</h3>
+        <p>Upload the process-flow picture to display it in this section.</p>
+        <div class="image-upload-row">
+          <label class="button" for="process-flow-upload">Upload process-flow picture</label>
+          <input id="process-flow-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <button class="button button--danger" id="remove-process-flow" type="button">Remove picture</button>
+        </div>
+        <div class="process-flow-empty" id="process-flow-empty">No process-flow picture has been uploaded yet.</div>
+        <img class="process-flow-preview" id="process-flow-preview" alt="Project process flow">
+        <div class="status-message" id="process-flow-status" role="status" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="section" id="interviews" aria-labelledby="interviews-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">04</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -576,8 +780,8 @@
               <textarea id="feedback" name="feedback" placeholder="What did the client say or demonstrate?" required></textarea>
             </div>
             <div class="form-field">
-              <label for="decisions">Decisions made</label>
-              <textarea id="decisions" name="decisions" placeholder="Decisions or agreements from the meeting"></textarea>
+              <label for="interview-decisions">Decisions made</label>
+              <textarea id="interview-decisions" name="decisions" placeholder="Decisions or agreements from the meeting"></textarea>
             </div>
             <div class="form-field">
               <label for="action-items">Action items and next steps</label>
@@ -600,83 +804,6 @@
       <div class="saved-notes" id="saved-notes" aria-live="polite"></div>
     </section>
 
-    <section class="section" id="communication" aria-labelledby="communication-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">03</span>
-        <div><h2 id="communication-title">Communication</h2></div>
-      </div>
-      <div class="grid">
-        <article class="card"><h3>Platform</h3><p>Microsoft Teams and Email</p></article>
-        <article class="card"><h3>Response time</h3><p>Within 12 hours weekdays or weekends</p></article>
-        <article class="card card--featured"><h3>Meetings</h3><p>We are mostly available during the daytime. We all have nighttime classes, and our times ranged from 12–2:00 p.m. to potentially start, then 5–6:00 p.m., and the latest of availability.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="decisions" aria-labelledby="decisions-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">04</span>
-        <div><h2 id="decisions-title">Decision-Making</h2></div>
-      </div>
-      <div class="grid">
-        <article class="card"><h3>How decisions are made</h3><p>We act as a democracy and listen to every perspective.</p></article>
-        <article class="card"><h3>How disagreements are handled</h3><p>We have a psych major and a team member who has experience being a mediator in group work.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="agreements" aria-labelledby="agreements-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">05</span>
-        <div><h2 id="agreements-title">Working Agreements</h2></div>
-      </div>
-      <div class="grid">
-        <article class="card"><h3>Participation</h3><p>Contribute ideas and experiences, and demonstrate effort through active listening and completing tasks.</p></article>
-        <article class="card"><h3>Accountability</h3><p>Message them and try to listen and help before judging.</p></article>
-        <article class="card card--featured"><h3>Deadlines</h3><p>Try to micromanage and communicate with the team and take time to take care of mental health.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="conflict" aria-labelledby="conflict-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">06</span>
-        <div><h2 id="conflict-title">Conflict Resolution</h2></div>
-      </div>
-      <article class="card card--featured">
-        <ol class="process-list">
-          <li><strong>Unresponsive teammate</strong><span>First text them and email. Once all ways of reaching out are exhausted, contact the professor as a last resort.</span></li>
-          <li><strong>How concerns are raised</strong><span>Usually through email first.</span></li>
-          <li><strong>When to involve the instructor</strong><span>If conflict is not manageable by team members and progress is halted immensely, then bring in the instructor.</span></li>
-        </ol>
-      </article>
-    </section>
-
-    <section class="section" id="success" aria-labelledby="success-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">07</span>
-        <div><h2 id="success-title">Success Metrics</h2></div>
-      </div>
-      <div class="grid">
-        <article class="card card--featured"><h3>What will make us proud</h3><p>Not only an A, but creating a system that contributes to a viable resource for years.</p></article>
-        <article class="card card--featured"><h3>Behaviors that define success</h3><p>Being understanding, communicating, sharing perspectives, and having a positive and growth mindset.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="purpose" aria-labelledby="purpose-title">
-      <div class="section-heading">
-        <span class="section-number" aria-hidden="true">08</span>
-        <div><h2 id="purpose-title">Shared Purpose</h2></div>
-      </div>
-      <div class="grid">
-        <article class="card card--featured">
-          <h3>Goal</h3>
-          <p>We are trying to build an app that basically cleans up the data that is extracted from Penji (software that ELAC uses in its tutoring centers) and produces two Excel files, one for OIEA and A&amp;R. By making the positive attendance more automated, we hope it would lead to more accurate reporting as well as being used by departments and programs.</p>
-        </article>
-        <article class="card card--featured">
-          <h3>What success looks like</h3>
-          <p>Building the app and installing into the computers. Creating the manual/demo so others can</p>
-          <span class="incomplete-note">Content needs to be added to complete this statement.</span>
-        </article>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -684,6 +811,97 @@
   </footer>
 
   <script>
+    /* The editable project scope and process-flow picture are saved locally. */
+    const scopeStorageKey = "teamRocketProjectScope";
+    const processFlowStorageKey = "teamRocketProcessFlowImage";
+    const scopeForm = document.querySelector("#scope-form");
+    const scopeStatus = document.querySelector("#scope-status");
+    const clearScopeButton = document.querySelector("#clear-scope");
+    const processFlowUpload = document.querySelector("#process-flow-upload");
+    const processFlowPreview = document.querySelector("#process-flow-preview");
+    const processFlowEmpty = document.querySelector("#process-flow-empty");
+    const processFlowStatus = document.querySelector("#process-flow-status");
+    const removeProcessFlowButton = document.querySelector("#remove-process-flow");
+
+    function loadScope() {
+      let savedScope = {};
+      try { savedScope = JSON.parse(localStorage.getItem(scopeStorageKey)) || {}; }
+      catch (error) { savedScope = {}; }
+
+      Object.entries(savedScope).forEach(([name, value]) => {
+        const field = scopeForm.elements.namedItem(name);
+        if (field) field.value = value;
+      });
+    }
+
+    scopeForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(scopeForm);
+      const scope = Object.fromEntries(
+        Array.from(data.entries(), ([name, value]) => [name, value.trim()])
+      );
+      localStorage.setItem(scopeStorageKey, JSON.stringify(scope));
+      scopeStatus.textContent = "Project scope saved successfully.";
+    });
+
+    clearScopeButton.addEventListener("click", () => {
+      if (!confirm("Clear all saved project scope details?")) return;
+      localStorage.removeItem(scopeStorageKey);
+      scopeForm.reset();
+      scopeStatus.textContent = "Project scope cleared.";
+    });
+
+    function showProcessFlow(source) {
+      if (source) {
+        processFlowPreview.src = source;
+        processFlowPreview.classList.add("is-visible");
+        processFlowEmpty.hidden = true;
+        removeProcessFlowButton.disabled = false;
+      } else {
+        processFlowPreview.removeAttribute("src");
+        processFlowPreview.classList.remove("is-visible");
+        processFlowEmpty.hidden = false;
+        removeProcessFlowButton.disabled = true;
+      }
+    }
+
+    processFlowUpload.addEventListener("change", () => {
+      const file = processFlowUpload.files[0];
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        processFlowStatus.textContent = "Please select an image file.";
+        processFlowUpload.value = "";
+        return;
+      }
+      if (file.size > 3000000) {
+        processFlowStatus.textContent = "Please use an image smaller than 3 MB.";
+        processFlowUpload.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          localStorage.setItem(processFlowStorageKey, reader.result);
+          showProcessFlow(reader.result);
+          processFlowStatus.textContent = "Process-flow picture saved and displayed.";
+        } catch (error) {
+          showProcessFlow(reader.result);
+          processFlowStatus.textContent = "The picture is displayed, but this browser could not save it. Try a smaller image.";
+        }
+      });
+      reader.readAsDataURL(file);
+    });
+
+    removeProcessFlowButton.addEventListener("click", () => {
+      if (!processFlowPreview.getAttribute("src")) return;
+      if (!confirm("Remove the process-flow picture?")) return;
+      localStorage.removeItem(processFlowStorageKey);
+      processFlowUpload.value = "";
+      showProcessFlow("");
+      processFlowStatus.textContent = "Process-flow picture removed.";
+    });
+
     /* The interview log uses localStorage, which saves data in this browser. */
     const storageKey = "teamRocketInterviewNotes";
     const form = document.querySelector("#interview-form");
@@ -801,6 +1019,8 @@
       statusMessage.textContent = "Notes backup downloaded.";
     });
 
+    loadScope();
+    showProcessFlow(localStorage.getItem(processFlowStorageKey) || "");
     renderNotes();
   </script>
 </body>
