@@ -1,4 +1,4 @@
-<!doctype html>
+Blank diagram sm.jpg<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -142,9 +142,9 @@
     .nav-links a.nav-link--highlight { color: #ff4d4d; }
     .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
 
-/* =========================================================
-3. HERO
-========================================================= */
+    /* =========================================================
+       3. HERO
+       ========================================================= */
   .hero {
       color: var(--white);
       background-color: #1c2638;
@@ -164,10 +164,6 @@
       background-size: cover; /* Use '100% 100%' if you want to force-stretch it to the exact bounds */
       background-repeat: no-repeat;
     }
-
-
-
-
 
     .eyebrow {
       margin: 0 0 12px;
@@ -330,6 +326,145 @@
     .overview-card--challenge { border-left: 4px solid var(--gold-500); }
     .overview-card--challenge .overview-icon { color: #7a5600; background: var(--gold-100); }
 
+    /* Project stakeholders */
+    .stakeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .stakeholder-card {
+      position: relative;
+      display: flex;
+      min-height: 390px;
+      flex-direction: column;
+      padding: 26px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ffffff, #eef3ff);
+      border: 1px solid #dce5fb;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(23, 32, 51, 0.09);
+      isolation: isolate;
+    }
+    .stakeholder-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -62px;
+      right: -56px;
+      width: 155px;
+      aspect-ratio: 1;
+      background: rgba(103, 135, 212, 0.16);
+      border-radius: 50%;
+    }
+    .stakeholder-card:nth-child(2) {
+      background: linear-gradient(145deg, #ffffff, #fff6e5);
+      border-color: #f5dfac;
+    }
+    .stakeholder-card:nth-child(2)::before { background: rgba(240, 180, 41, 0.18); }
+    .stakeholder-card:nth-child(3) {
+      background: linear-gradient(145deg, #ffffff, #eaf9f6);
+      border-color: #cce9e2;
+    }
+    .stakeholder-card:nth-child(3)::before { background: rgba(51, 160, 139, 0.16); }
+    .stakeholder-avatar {
+      display: grid;
+      width: 64px;
+      aspect-ratio: 1;
+      margin-bottom: 22px;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      border: 4px solid rgba(255, 255, 255, 0.82);
+      border-radius: 22px;
+      box-shadow: 0 9px 20px rgba(49, 85, 166, 0.22);
+      font-size: 1.15rem;
+      font-weight: 800;
+      transform: rotate(-3deg);
+    }
+    .stakeholder-card:nth-child(2) .stakeholder-avatar {
+      color: #523900;
+      background: linear-gradient(135deg, #ffd978, var(--gold-500));
+      box-shadow: 0 9px 20px rgba(193, 132, 1, 0.20);
+      transform: rotate(3deg);
+    }
+    .stakeholder-card:nth-child(3) .stakeholder-avatar {
+      background: linear-gradient(135deg, #237d6d, #52bda9);
+      box-shadow: 0 9px 20px rgba(35, 125, 109, 0.20);
+    }
+    .stakeholder-card h3 {
+      margin: 0 0 5px;
+      color: var(--slate-900);
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+    .stakeholder-role { margin: 0 0 12px; color: var(--steel-500); font-size: 0.87rem; font-weight: 600; }
+    .stakeholder-tag {
+      display: inline-flex;
+      padding: 6px 10px;
+      color: var(--blue-700);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(49, 85, 166, 0.18);
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+    .stakeholder-description {
+      margin: 16px 0 0;
+      color: var(--steel-700);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .stakeholder-context {
+      margin: 16px 0 0;
+      padding: 13px 14px;
+      color: var(--steel-700);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(100, 116, 139, 0.14);
+      border-radius: 12px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .stakeholder-context strong { color: var(--slate-900); }
+    .persona-panels {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .persona-panel {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(100, 116, 139, 0.16);
+      border-radius: 11px;
+      overflow: hidden;
+    }
+    .persona-panel summary {
+      position: relative;
+      padding: 11px 38px 11px 13px;
+      color: var(--slate-900);
+      cursor: pointer;
+      font-size: 0.83rem;
+      font-weight: 700;
+      list-style: none;
+    }
+    .persona-panel summary::-webkit-details-marker { display: none; }
+    .persona-panel summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 13px;
+      color: var(--blue-700);
+      font-size: 1.05rem;
+      transform: translateY(-50%);
+    }
+    .persona-panel[open] summary::after { content: "−"; }
+    .persona-panel ul {
+      margin: 0;
+      padding: 0 16px 14px 30px;
+      color: var(--steel-700);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .persona-panel li + li { margin-top: 7px; }
+
     /* Consolidated team charter accordions */
     .accordion-stack { display: grid; gap: 12px; }
     .accordion {
@@ -490,44 +625,22 @@
       font-size: 0.92rem;
     }
 
-    /* Editable resource links */
-    .resource-link-card { margin-bottom: 18px; }
-    .resource-link-form { display: grid; gap: 12px; }
-    .resource-link-field { display: grid; gap: 7px; }
-    .resource-link-field input { min-height: 52px; }
-    .process-flow-card { margin-top: 18px; }
-    .process-flow-card h3 { margin-bottom: 6px; }
-    .process-flow-card > p { margin-bottom: 16px; }
-    .image-upload-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-    .image-upload-row input[type="file"] {
-      flex: 1 1 280px;
-      padding: 8px;
-      background: var(--steel-100);
-    }
-    .process-flow-preview {
-      display: none;
-      width: 100%;
-      max-height: 680px;
-      margin-top: 18px;
-      object-fit: contain;
+    /* Permanent process-flow diagram */
+    .process-diagram-frame {
+      margin: 0;
+      padding: 10px;
+      overflow-x: auto;
       background: var(--white);
       border: 1px solid var(--steel-200);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
     }
-    .process-flow-preview.is-visible { display: block; }
-    .process-flow-empty {
-      margin-top: 18px;
-      padding: 30px;
-      color: var(--steel-500);
-      background: var(--steel-100);
-      border: 1px dashed var(--steel-300);
-      border-radius: var(--radius-md);
-      text-align: center;
+    .process-diagram {
+      display: block;
+      width: 100%;
+      min-width: 900px;
+      height: auto;
+      border-radius: 10px;
     }
 
     /* Interview note form and saved entries */
@@ -646,7 +759,7 @@
       .hero-inner::after { display: none; }
       main { padding-top: 40px; }
       .section { margin-bottom: 44px; }
-      .grid, .grid--members, .overview-grid { grid-template-columns: 1fr; }
+      .grid, .grid--members, .overview-grid, .stakeholder-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
       .form-field--wide { grid-column: auto; }
       .scope-grid { grid-template-columns: 1fr; }
@@ -833,38 +946,93 @@
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">03</span>
         <div>
-          <h2 id="personas-title">Personas</h2>
-          <p class="section-kicker">Save a link to the project personas</p>
+          <h2 id="personas-title">ELAC Stakeholder Personas</h2>
+          <p class="section-kicker">The people, responsibilities, and needs shaping the project</p>
         </div>
       </div>
 
-      <article class="card card--featured resource-link-card">
-        <form class="resource-link-form" id="personas-form">
-          <div class="resource-link-field">
-            <label for="personas-link">Personas</label>
-            <input id="personas-link" name="personasLink" type="url" inputmode="url" placeholder="https://...">
+      <div class="stakeholder-grid">
+        <article class="stakeholder-card">
+          <span class="stakeholder-avatar" aria-hidden="true">N</span>
+          <h3>Nelly</h3>
+          <p class="stakeholder-role">Data Validator</p>
+          <span class="stakeholder-tag">Compliance Accuracy</span>
+          <p class="stakeholder-description">A data-handling specialist working to ensure absolute compliance accuracy across learning labs before end-of-semester reporting deadlines.</p>
+          <p class="stakeholder-context"><strong>Role / Context:</strong> Manually intercepts, filters, and cross-references raw positive-attendance data exports.</p>
+          <div class="persona-panels">
+            <details class="persona-panel">
+              <summary>Goals</summary>
+              <ul>
+                <li><strong>Reduce routine administrative hours</strong> spent on row-by-row spreadsheet formatting.</li>
+                <li><strong>Auto-resolve legacy 8-digit errors</strong> by pulling missing parameters from background systems.</li>
+                <li><strong>Isolate systemic data errors</strong> early to guarantee precise decimal-hours tracking.</li>
+              </ul>
+            </details>
+            <details class="persona-panel">
+              <summary>Frustrations</summary>
+              <ul>
+                <li><strong>Siloed database profiles</strong> requiring external manual searches across multiple systems.</li>
+                <li><strong>Extreme check-out anomalies</strong> caused by forgotten campus kiosk logouts.</li>
+                <li><strong>Confounding data-column variations</strong> between appointments and walk-in logs.</li>
+              </ul>
+            </details>
           </div>
-          <div class="form-actions">
-            <button class="button" type="submit">Save personas link</button>
-            <button class="button button--secondary" id="open-personas-link" type="button">Open personas</button>
-            <span class="storage-note">The link is saved in this browser on this device.</span>
-          </div>
-          <div class="status-message" id="personas-status" role="status" aria-live="polite"></div>
-        </form>
-      </article>
+        </article>
 
-      <article class="card process-flow-card">
-        <h3>Personas image</h3>
-        <p>Upload a personas image to display it directly on this page.</p>
-        <div class="image-upload-row">
-          <label class="button" for="personas-image-upload">Upload personas image</label>
-          <input id="personas-image-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-          <button class="button button--danger" id="remove-personas-image" type="button">Remove image</button>
-        </div>
-        <div class="process-flow-empty" id="personas-image-empty">No personas image has been uploaded yet.</div>
-        <img class="process-flow-preview" id="personas-image-preview" alt="Project personas">
-        <div class="status-message" id="personas-image-status" role="status" aria-live="polite"></div>
-      </article>
+        <article class="stakeholder-card">
+          <span class="stakeholder-avatar" aria-hidden="true">MA</span>
+          <h3>Maria Acosta</h3>
+          <p class="stakeholder-role">Lab Director</p>
+          <span class="stakeholder-tag">Center Operations</span>
+          <p class="stakeholder-description">The Director of the Writing and Reading Centers, managing daily operation logs under rigid resource limitations.</p>
+          <p class="stakeholder-context"><strong>Role / Context:</strong> Oversees physical student entry check-ins, tutoring rosters, and resource-tracking frameworks.</p>
+          <div class="persona-panels">
+            <details class="persona-panel">
+              <summary>Goals</summary>
+              <ul>
+                <li><strong>Eliminate dependency</strong> on physical paper logs for tracking student check-ins.</li>
+                <li><strong>Expand tracking visibility</strong> smoothly to unvetted learning-support modules.</li>
+                <li><strong>Protect center funding status</strong> through verification-safe positive-attendance reports.</li>
+              </ul>
+            </details>
+            <details class="persona-panel">
+              <summary>Frustrations</summary>
+              <ul>
+                <li><strong>Faded or misprinted student IDs</strong> that consistently cause hardware errors.</li>
+                <li><strong>Zero budget allocations</strong> for expensive hardware-replacement pipelines.</li>
+                <li><strong>Manual overhead hours</strong> taken from student engagement to repair digital files.</li>
+              </ul>
+            </details>
+          </div>
+        </article>
+
+        <article class="stakeholder-card">
+          <span class="stakeholder-avatar" aria-hidden="true">JD</span>
+          <h3>Jane Doe</h3>
+          <p class="stakeholder-role">Administrative Assistant</p>
+          <span class="stakeholder-tag">Reporting &amp; Review</span>
+          <p class="stakeholder-description">An administrative assistant responsible for aggregating clean, system-wide inputs for institutional review.</p>
+          <p class="stakeholder-context"><strong>Role / Context:</strong> Acts as the primary interface coordinator bridging learning labs and executive deans.</p>
+          <div class="persona-panels">
+            <details class="persona-panel">
+              <summary>Goals</summary>
+              <ul>
+                <li><strong>Automate compliance consolidation</strong> using clean, predefined folder schemas.</li>
+                <li><strong>Receive standardized outputs</strong> structured into separate file formats.</li>
+                <li><strong>Ensure swift delivery paths</strong> for final validation reviews without operational friction.</li>
+              </ul>
+            </details>
+            <details class="persona-panel">
+              <summary>Frustrations</summary>
+              <ul>
+                <li><strong>Varying file-column layouts</strong> sent by individual campus-center groups.</li>
+                <li><strong>Manual calculations</strong> needed to turn messy timestamps into clear decimals.</li>
+                <li><strong>Siloed reporting pipelines</strong> that delay critical district-deadline submissions.</li>
+              </ul>
+            </details>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="section" id="process-flow" aria-labelledby="process-flow-title">
@@ -872,37 +1040,13 @@
         <span class="section-number" aria-hidden="true">04</span>
         <div>
           <h2 id="process-flow-title">Process Flow</h2>
-          <p class="section-kicker">Link to the process map or display the process-flow picture</p>
+          <p class="section-kicker">Penji raw-data preparation and distribution workflow</p>
         </div>
       </div>
 
-      <article class="card card--featured resource-link-card">
-        <form class="resource-link-form" id="process-map-form">
-          <div class="resource-link-field">
-            <label for="process-map-link">Process Map</label>
-            <input id="process-map-link" name="processMapLink" type="url" inputmode="url" placeholder="https://...">
-          </div>
-          <div class="form-actions">
-            <button class="button" type="submit">Save process map link</button>
-            <button class="button button--secondary" id="open-process-map-link" type="button">Open process map</button>
-            <span class="storage-note">The link is saved in this browser on this device.</span>
-          </div>
-          <div class="status-message" id="process-map-status" role="status" aria-live="polite"></div>
-        </form>
-      </article>
-
-      <article class="card process-flow-card">
-        <h3>Process-flow picture</h3>
-        <p>Upload a process-flow picture to display it directly on this page.</p>
-        <div class="image-upload-row">
-          <label class="button" for="process-flow-upload">Upload process-flow picture</label>
-          <input id="process-flow-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-          <button class="button button--danger" id="remove-process-flow" type="button">Remove picture</button>
-        </div>
-        <div class="process-flow-empty" id="process-flow-empty">No process-flow picture has been uploaded yet.</div>
-        <img class="process-flow-preview" id="process-flow-preview" alt="Project process flow">
-        <div class="status-message" id="process-flow-status" role="status" aria-live="polite"></div>
-      </article>
+      <figure class="process-diagram-frame">
+        <img class="process-diagram" src="images/Blank diagram sm.jpg" alt="Penji raw-data generation process flow showing staff verification, file preparation, and distribution to Vanessa, Admissions and Records, and the Dean's Office">
+      </figure>
     </section>
 
     <section class="section" id="interviews" aria-labelledby="interviews-title">
@@ -1070,190 +1214,6 @@
   </footer>
 
   <script>
-    /* Resource links, uploaded images, and interview notes are saved locally. */
-    const resourceLinksStorageKey = "teamRocketProjectResourceLinks";
-    const personasImageStorageKey = "teamRocketPersonasImage";
-    const processFlowStorageKey = "teamRocketProcessFlowImage";
-    const personasForm = document.querySelector("#personas-form");
-    const personasLink = document.querySelector("#personas-link");
-    const personasStatus = document.querySelector("#personas-status");
-    const openPersonasButton = document.querySelector("#open-personas-link");
-    const personasImageUpload = document.querySelector("#personas-image-upload");
-    const personasImagePreview = document.querySelector("#personas-image-preview");
-    const personasImageEmpty = document.querySelector("#personas-image-empty");
-    const personasImageStatus = document.querySelector("#personas-image-status");
-    const removePersonasImageButton = document.querySelector("#remove-personas-image");
-    const processMapForm = document.querySelector("#process-map-form");
-    const processMapLink = document.querySelector("#process-map-link");
-    const processMapStatus = document.querySelector("#process-map-status");
-    const openProcessMapButton = document.querySelector("#open-process-map-link");
-    const processFlowUpload = document.querySelector("#process-flow-upload");
-    const processFlowPreview = document.querySelector("#process-flow-preview");
-    const processFlowEmpty = document.querySelector("#process-flow-empty");
-    const processFlowStatus = document.querySelector("#process-flow-status");
-    const removeProcessFlowButton = document.querySelector("#remove-process-flow");
-
-    function getResourceLinks() {
-      try { return JSON.parse(localStorage.getItem(resourceLinksStorageKey)) || {}; }
-      catch (error) { return {}; }
-    }
-
-    function saveResourceLink(key, value) {
-      const links = getResourceLinks();
-      links[key] = value;
-      localStorage.setItem(resourceLinksStorageKey, JSON.stringify(links));
-    }
-
-    function validWebAddress(value) {
-      try {
-        const url = new URL(value);
-        return url.protocol === "http:" || url.protocol === "https:";
-      } catch (error) {
-        return false;
-      }
-    }
-
-    function handleLinkSave(event, key, input, status, label) {
-      event.preventDefault();
-      const value = input.value.trim();
-      if (value && !validWebAddress(value)) {
-        status.textContent = "Enter a complete web address beginning with http:// or https://.";
-        input.focus();
-        return;
-      }
-      saveResourceLink(key, value);
-      status.textContent = value ? label + " saved successfully." : label + " cleared.";
-    }
-
-    function openResourceLink(input, status) {
-      const value = input.value.trim();
-      if (!validWebAddress(value)) {
-        status.textContent = "Add and save a complete web address before opening it.";
-        input.focus();
-        return;
-      }
-      window.open(value, "_blank", "noopener,noreferrer");
-    }
-
-    personasForm.addEventListener("submit", (event) => {
-      handleLinkSave(event, "personasLink", personasLink, personasStatus, "Personas link");
-    });
-
-    processMapForm.addEventListener("submit", (event) => {
-      handleLinkSave(event, "processMapLink", processMapLink, processMapStatus, "Process map link");
-    });
-
-    openPersonasButton.addEventListener("click", () => openResourceLink(personasLink, personasStatus));
-    openProcessMapButton.addEventListener("click", () => openResourceLink(processMapLink, processMapStatus));
-
-    function loadResourceLinks() {
-      const links = getResourceLinks();
-      personasLink.value = links.personasLink || "";
-      processMapLink.value = links.processMapLink || "";
-    }
-
-    function showPersonasImage(source) {
-      if (source) {
-        personasImagePreview.src = source;
-        personasImagePreview.classList.add("is-visible");
-        personasImageEmpty.hidden = true;
-        removePersonasImageButton.disabled = false;
-      } else {
-        personasImagePreview.removeAttribute("src");
-        personasImagePreview.classList.remove("is-visible");
-        personasImageEmpty.hidden = false;
-        removePersonasImageButton.disabled = true;
-      }
-    }
-
-    personasImageUpload.addEventListener("change", () => {
-      const file = personasImageUpload.files[0];
-      if (!file) return;
-      if (!file.type.startsWith("image/")) {
-        personasImageStatus.textContent = "Please select an image file.";
-        personasImageUpload.value = "";
-        return;
-      }
-      if (file.size > 3000000) {
-        personasImageStatus.textContent = "Please use an image smaller than 3 MB.";
-        personasImageUpload.value = "";
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        try {
-          localStorage.setItem(personasImageStorageKey, reader.result);
-          showPersonasImage(reader.result);
-          personasImageStatus.textContent = "Personas image saved and displayed.";
-        } catch (error) {
-          showPersonasImage(reader.result);
-          personasImageStatus.textContent = "The image is displayed, but this browser could not save it. Try a smaller image.";
-        }
-      });
-      reader.readAsDataURL(file);
-    });
-
-    removePersonasImageButton.addEventListener("click", () => {
-      if (!personasImagePreview.getAttribute("src")) return;
-      if (!confirm("Remove the personas image?")) return;
-      localStorage.removeItem(personasImageStorageKey);
-      personasImageUpload.value = "";
-      showPersonasImage("");
-      personasImageStatus.textContent = "Personas image removed.";
-    });
-
-    function showProcessFlow(source) {
-      if (source) {
-        processFlowPreview.src = source;
-        processFlowPreview.classList.add("is-visible");
-        processFlowEmpty.hidden = true;
-        removeProcessFlowButton.disabled = false;
-      } else {
-        processFlowPreview.removeAttribute("src");
-        processFlowPreview.classList.remove("is-visible");
-        processFlowEmpty.hidden = false;
-        removeProcessFlowButton.disabled = true;
-      }
-    }
-
-    processFlowUpload.addEventListener("change", () => {
-      const file = processFlowUpload.files[0];
-      if (!file) return;
-      if (!file.type.startsWith("image/")) {
-        processFlowStatus.textContent = "Please select an image file.";
-        processFlowUpload.value = "";
-        return;
-      }
-      if (file.size > 3000000) {
-        processFlowStatus.textContent = "Please use an image smaller than 3 MB.";
-        processFlowUpload.value = "";
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        try {
-          localStorage.setItem(processFlowStorageKey, reader.result);
-          showProcessFlow(reader.result);
-          processFlowStatus.textContent = "Process-flow picture saved and displayed.";
-        } catch (error) {
-          showProcessFlow(reader.result);
-          processFlowStatus.textContent = "The picture is displayed, but this browser could not save it. Try a smaller image.";
-        }
-      });
-      reader.readAsDataURL(file);
-    });
-
-    removeProcessFlowButton.addEventListener("click", () => {
-      if (!processFlowPreview.getAttribute("src")) return;
-      if (!confirm("Remove the process-flow picture?")) return;
-      localStorage.removeItem(processFlowStorageKey);
-      processFlowUpload.value = "";
-      showProcessFlow("");
-      processFlowStatus.textContent = "Process-flow picture removed.";
-    });
-
     /* The interview log uses localStorage, which saves data in this browser. */
     const storageKey = "teamRocketInterviewNotes";
     const form = document.querySelector("#interview-form");
@@ -1398,9 +1358,6 @@
       statusMessage.textContent = "Notes backup downloaded.";
     });
 
-    loadResourceLinks();
-    showPersonasImage(localStorage.getItem(personasImageStorageKey) || "");
-    showProcessFlow(localStorage.getItem(processFlowStorageKey) || "");
     renderNotes();
   </script>
 </body>
