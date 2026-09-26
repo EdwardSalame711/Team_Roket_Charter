@@ -142,15 +142,28 @@
     .nav-links a.nav-link--highlight { color: #ff4d4d; }
     .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
 
-    /* =========================================================
-       3. HERO
-       ========================================================= */
+/* =========================================================
+3. HERO
+========================================================= */
     .hero {
       color: var(--white);
-      background:
-        radial-gradient(circle at 82% 35%, rgba(103, 135, 212, 0.42), transparent 24rem),
-        linear-gradient(135deg, #111a2c 0%, var(--slate-900) 58%, #273969 100%);
+      background-color: #1c2638;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(calc(100% - 32px), var(--page-width));
+      margin-inline: auto;
+    
+
+      /* Aligns the background image to match the top navigation width */
+      background-image: url('images/Husky_Rocket-sm.jpeg');
+      background-position: right center;
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
     .hero-inner {
