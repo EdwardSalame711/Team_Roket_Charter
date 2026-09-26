@@ -145,7 +145,7 @@
 /* =========================================================
 3. HERO
 ========================================================= */
-    .hero {
+  .hero {
       color: var(--white);
       background-color: #1c2638;
       overflow: hidden;
@@ -155,14 +155,13 @@
 
     .hero-inner {
       position: relative;
-      width: min(calc(100% - 2px), var(--page-width));
+      width: min(calc(100% - 32px), var(--page-width));
       margin-inline: auto;
-    
 
-      /* Aligns the background image to match the top navigation width */
+      /* Aligns and restricts the background image to the max-width of the site */
       background-image: url('images/Husky_Rocket-sm.jpeg');
       background-position: right center;
-      background-size: contain;
+      background-size: cover; /* Use '100% 100%' if you want to force-stretch it to the exact bounds */
       background-repeat: no-repeat;
     }
 
