@@ -142,31 +142,44 @@
     .nav-links a.nav-link--highlight { color: #ff4d4d; }
     .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
 
-/* =========================================================
-3. HERO
-========================================================= */
+    /* =========================================================
+       3. HERO
+       ========================================================= */
     .hero {
       color: var(--white);
-      background-color: #1c2638;
+      background:
+        radial-gradient(circle at 82% 35%, rgba(103, 135, 212, 0.42), transparent 24rem),
+        linear-gradient(135deg, #111a2c 0%, var(--slate-900) 58%, #273969 100%);
       overflow: hidden;
-      display: flex;
-      justify-content: center;
     }
 
     .hero-inner {
       position: relative;
       width: min(calc(100% - 32px), var(--page-width));
       margin-inline: auto;
-    
-
-      /* Aligns the background image to match the top navigation width */
-      background-image: url('images/Husky_Rocket-sm.jpeg');
-      background-position: right center;
-      background-size: contain;
-      background-repeat: no-repeat;
+      padding: 92px 0 84px;
     }
 
+    .hero-inner::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -170px;
+      width: 430px;
+      aspect-ratio: 1;
+      border: 72px solid rgba(104, 123, 208, 0.20);
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #c6d5ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
 
     h1 {
       max-width: 780px;
@@ -438,17 +451,49 @@
     .process-list strong { display: block; margin-bottom: 3px; color: var(--slate-900); }
     .process-list span { color: var(--steel-700); }
 
-    /* Editable project goal, scope, and resource links */
-    .scope-intro { margin-bottom: 18px; }
+    /* Permanent project goal and scope */
     .scope-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
-    .scope-field { display: grid; gap: 7px; }
-    .scope-field--wide { grid-column: 1 / -1; }
-    .scope-field textarea { min-height: 130px; }
-    .scope-field--wide textarea { min-height: 105px; }
+    .scope-card {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 28px rgba(23, 32, 51, 0.06);
+    }
+    .scope-card--wide { grid-column: 1 / -1; }
+    .scope-card--goal {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--slate-900), #304679);
+      border: 0;
+      box-shadow: var(--shadow);
+    }
+    .scope-card h3 {
+      margin: 0 0 10px;
+      color: var(--slate-900);
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+    .scope-card--goal h3 { color: #cbd7ff; }
+    .scope-card p { margin: 0; color: var(--steel-700); }
+    .scope-card--goal p { color: var(--white); font-size: 1.04rem; }
+    .scope-card ul { margin: 0; padding-left: 1.2rem; color: var(--steel-700); }
+    .scope-card li + li { margin-top: 8px; }
+    .scope-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .scope-columns h4 {
+      margin: 0 0 8px;
+      color: var(--blue-700);
+      font-size: 0.92rem;
+    }
+
+    /* Editable resource links */
     .resource-link-card { margin-bottom: 18px; }
     .resource-link-form { display: grid; gap: 12px; }
     .resource-link-field { display: grid; gap: 7px; }
@@ -608,7 +653,8 @@
       .form-grid { grid-template-columns: 1fr; }
       .form-field--wide { grid-column: auto; }
       .scope-grid { grid-template-columns: 1fr; }
-      .scope-field--wide { grid-column: auto; }
+      .scope-card--wide { grid-column: auto; }
+      .scope-columns { grid-template-columns: 1fr; }
       .card { padding: 20px; }
       .saved-note { padding-right: 20px; }
       .saved-note-actions {
@@ -651,8 +697,8 @@
         <span>Team Rocket</span>
       </a>
       <div class="nav-links">
-        <a href="#client-overview">Client Overview</a>
-        <a href="#project-goal-scope" class="nav-link--project">Project Goal and Scope</a>
+        <a href="#client-overview" class="nav-link--project">Client Overview</a>
+        <a href="#project-goal-scope">Project Goal and Scope</a>
         <a href="#personas">Personas</a>
         <a href="#process-flow">Process Flow</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
@@ -664,7 +710,7 @@
   <div class="hero" id="top">
     <div class="hero-inner">
       <p class="eyebrow">CIS 5040 · Human-Centered Design</p>
-      <h1>Team Rocket</h1>
+      <h1>ELAC Project Hub</h1>
       <p class="hero-summary">Team Rocket's working space for the East Los Angeles College Reading &amp; Tutoring Center project—from client discovery and process mapping to project scope, interviews, and team agreements.</p>
       <ul class="meta" aria-label="Charter details">
         <li>Team: Team Rocket</li>
@@ -703,7 +749,7 @@
         <article class="card overview-card overview-card--challenge">
           <span class="overview-icon" aria-hidden="true">04</span>
           <h3>Current Challenges &amp; Bottlenecks</h3>
-          <p>Due to barcode scanners failing to read student IDs or ink quality issues on cards — the center maintains a hybrid workflow using manual paper sign-in logs to verify attendance data accuracy. Staff members spen weekly hours reviewing, filtering, and cleaning raw data to ensure correct reporting.</p>
+          <p>Due to hardware limitations—such as barcode scanners failing to consistently read student IDs or ink quality issues on cards—the center maintains a hybrid workflow using manual paper sign-in logs to verify attendance data accuracy. Staff members spend dedicated weekly hours reviewing, filtering, and cleaning raw data entries to ensure compliance and correct reporting.</p>
         </article>
       </div>
     </section>
@@ -717,42 +763,72 @@
         </div>
       </div>
 
-      <article class="card card--featured scope-intro">
-        <form id="scope-form">
-          <div class="scope-grid">
-            <div class="scope-field scope-field--wide">
-              <label for="scope-overview">Project overview</label>
-              <textarea id="scope-overview" name="overview" placeholder="Describe the project and the problem it will solve."></textarea>
+      <div class="scope-grid">
+        <article class="scope-card scope-card--wide scope-card--goal">
+          <h3>Project Goal</h3>
+          <p>Our project will help Monte Perez at East Los Angeles College capture positive attendance as accurately as possible across learning support services—both those actively collecting and reporting data and those not yet reporting. We will know we have succeeded when we develop an easy-to-use solution that identifies missing information and can also serve our sister colleges and other campuses using Penji.</p>
+        </article>
+
+        <article class="scope-card scope-card--wide">
+          <h3>Project Overview</h3>
+          <p>The project addresses the inefficiencies and manual reporting hurdles faced by campus tutoring and reading centers when tracking student attendance. Staff currently rely on a combination of Penji, legacy software, and manual paper sign-in logs because of hardware issues such as barcode scanner failures. The goal is to streamline attendance capture, data cleaning, and positive-attendance reporting for administrative stakeholders.</p>
+        </article>
+
+        <article class="scope-card">
+          <h3>Objectives</h3>
+          <ul>
+            <li>Eliminate dependency on error-prone paper logs for physical student check-ins.</li>
+            <li>Reduce weekly administrative hours spent manually cross-referencing, formatting, and filtering invalid student ID data.</li>
+            <li>Create seamless and accurate end-of-semester positive-attendance reporting for institutional deans and administrators.</li>
+          </ul>
+        </article>
+
+        <article class="scope-card">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>A comprehensive user-experience and workflow analysis of current campus tutoring-center data processes.</li>
+            <li>Wireframes or system-requirement specifications for an optimized attendance-tracking and reporting workflow.</li>
+            <li>Documentation and meeting logs detailing client needs from stakeholders such as Nelly and Maria.</li>
+          </ul>
+        </article>
+
+        <article class="scope-card">
+          <h3>In Scope</h3>
+          <ul>
+            <li>Analyze front-desk check-in processes for both in-person and virtual online-chat sessions.</li>
+            <li>Address data-entry error management, including duplicate digits, invalid IDs, and incorrect timestamps.</li>
+            <li>Evaluate compliance requirements such as ADA-compliant communication tools.</li>
+          </ul>
+        </article>
+
+        <article class="scope-card">
+          <h3>Out of Scope</h3>
+          <ul>
+            <li>Replace district-wide hardware infrastructure, including purchasing expensive RFID student ID cards or new campus-wide scanners.</li>
+            <li>Manage back-end institutional database architecture outside the reading center's direct reporting tools.</li>
+          </ul>
+        </article>
+
+        <article class="scope-card scope-card--wide">
+          <h3>Constraints &amp; Assumptions</h3>
+          <div class="scope-columns">
+            <div>
+              <h4>Constraints</h4>
+              <ul>
+                <li>Limited budget for expensive hardware solutions.</li>
+                <li>Reliance on existing software ecosystems such as Penji.</li>
+                <li>Adherence to accessibility deadlines and ADA-compliance guidelines.</li>
+              </ul>
             </div>
-            <div class="scope-field">
-              <label for="scope-objectives">Objectives</label>
-              <textarea id="scope-objectives" name="objectives" placeholder="List the main goals and desired outcomes."></textarea>
-            </div>
-            <div class="scope-field">
-              <label for="scope-deliverables">Deliverables</label>
-              <textarea id="scope-deliverables" name="deliverables" placeholder="List the products, documents, or results the team will provide."></textarea>
-            </div>
-            <div class="scope-field">
-              <label for="scope-in">In scope</label>
-              <textarea id="scope-in" name="inScope" placeholder="What work and features are included?"></textarea>
-            </div>
-            <div class="scope-field">
-              <label for="scope-out">Out of scope</label>
-              <textarea id="scope-out" name="outOfScope" placeholder="What work and features are not included?"></textarea>
-            </div>
-            <div class="scope-field scope-field--wide">
-              <label for="scope-constraints">Constraints and assumptions</label>
-              <textarea id="scope-constraints" name="constraints" placeholder="Document deadlines, resources, dependencies, limitations, and assumptions."></textarea>
+            <div>
+              <h4>Assumptions</h4>
+              <ul>
+                <li>Staff will continue to require verification safeguards to ensure accurate positive-attendance data despite hardware limitations.</li>
+              </ul>
             </div>
           </div>
-          <div class="form-actions">
-            <button class="button" type="submit">Save project goal and scope</button>
-            <button class="button button--secondary" id="clear-scope" type="button">Clear goal and scope</button>
-            <span class="storage-note">Project details are saved in this browser on this device.</span>
-          </div>
-          <div class="status-message" id="scope-status" role="status" aria-live="polite"></div>
-        </form>
-      </article>
+        </article>
+      </div>
 
     </section>
 
@@ -997,14 +1073,10 @@
   </footer>
 
   <script>
-    /* Project details, resource links, and the process-flow picture are saved locally. */
-    const scopeStorageKey = "teamRocketProjectScope";
+    /* Resource links, uploaded images, and interview notes are saved locally. */
     const resourceLinksStorageKey = "teamRocketProjectResourceLinks";
     const personasImageStorageKey = "teamRocketPersonasImage";
     const processFlowStorageKey = "teamRocketProcessFlowImage";
-    const scopeForm = document.querySelector("#scope-form");
-    const scopeStatus = document.querySelector("#scope-status");
-    const clearScopeButton = document.querySelector("#clear-scope");
     const personasForm = document.querySelector("#personas-form");
     const personasLink = document.querySelector("#personas-link");
     const personasStatus = document.querySelector("#personas-status");
@@ -1023,34 +1095,6 @@
     const processFlowEmpty = document.querySelector("#process-flow-empty");
     const processFlowStatus = document.querySelector("#process-flow-status");
     const removeProcessFlowButton = document.querySelector("#remove-process-flow");
-
-    function loadScope() {
-      let savedScope = {};
-      try { savedScope = JSON.parse(localStorage.getItem(scopeStorageKey)) || {}; }
-      catch (error) { savedScope = {}; }
-
-      Object.entries(savedScope).forEach(([name, value]) => {
-        const field = scopeForm.elements.namedItem(name);
-        if (field) field.value = value;
-      });
-    }
-
-    scopeForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(scopeForm);
-      const scope = Object.fromEntries(
-        Array.from(data.entries(), ([name, value]) => [name, value.trim()])
-      );
-      localStorage.setItem(scopeStorageKey, JSON.stringify(scope));
-      scopeStatus.textContent = "Project goal and scope saved successfully.";
-    });
-
-    clearScopeButton.addEventListener("click", () => {
-      if (!confirm("Clear all saved project goal and scope details?")) return;
-      localStorage.removeItem(scopeStorageKey);
-      scopeForm.reset();
-      scopeStatus.textContent = "Project goal and scope cleared.";
-    });
 
     function getResourceLinks() {
       try { return JSON.parse(localStorage.getItem(resourceLinksStorageKey)) || {}; }
@@ -1357,7 +1401,6 @@
       statusMessage.textContent = "Notes backup downloaded.";
     });
 
-    loadScope();
     loadResourceLinks();
     showPersonasImage(localStorage.getItem(personasImageStorageKey) || "");
     showProcessFlow(localStorage.getItem(processFlowStorageKey) || "");
