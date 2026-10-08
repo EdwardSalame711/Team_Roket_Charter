@@ -521,6 +521,18 @@
     .accordion-content > .process-list { margin-top: 18px; }
     .accordion-content .card { padding: 18px; box-shadow: none; }
     .accordion-content .card--featured { border-top-width: 1px; }
+    .process-info-accordion { margin: 0 0 20px; }
+    .process-info-accordion .accordion-content { padding-top: 18px; }
+    .process-info-accordion h3 {
+      margin: 0 0 8px;
+      color: var(--blue-700);
+      font-size: 1rem;
+    }
+    .process-info-accordion p { margin: 0 0 18px; color: var(--steel-700); }
+    .process-info-steps { margin: 0; padding-left: 1.4rem; color: var(--steel-700); }
+    .process-info-steps > li + li { margin-top: 8px; }
+    .process-info-substeps { margin: 8px 0 0; padding-left: 0; list-style: none; }
+    .process-info-substeps li + li { margin-top: 6px; }
 
     .member-card { min-width: 0; }
     .member-initial {
@@ -1125,6 +1137,49 @@
           <p class="section-kicker">Penji raw-data preparation and distribution workflow</p>
         </div>
       </div>
+
+      <details class="accordion process-info-accordion">
+        <summary><span class="accordion-label" aria-hidden="true">INFO</span>Diagram Information and Steps 1–18</summary>
+        <div class="accordion-content">
+          <h3>Diagram Information</h3>
+          <p>This workflow shows how staff validate and clean Penji utilization data, reconcile records against supporting sources, prepare the final file, and email it to Vanessa. Vanessa dispatches the file to A&amp;R for enrollment blocking and to the Dean Assistant for the Dean’s Office; the process ends after both recipients receive the file.</p>
+
+          <h3>Steps 1–18</h3>
+          <ol class="process-info-steps">
+            <li>Begin the process.</li>
+            <li>Open the required Penji tabs and supporting records.</li>
+            <li>Verify walk-ins and appointments against paper tutor logs, rosters, and Cranium Cafe or ConnexEd login records.</li>
+            <li>Correct out-of-bounds metrics, including invalid or inappropriate Zoom links.</li>
+            <li>Download the unvetted CSV file from Penji.</li>
+            <li>Scrub the CSV in Excel.
+              <ul class="process-info-substeps">
+                <li><strong>6.1.</strong> Verify IDs.</li>
+                <li><strong>6.2.</strong> Remove duplicate entries.</li>
+                <li><strong>6.3.</strong> Remove staff and test entries.</li>
+                <li><strong>6.4.</strong> Identify and correct inverted timestamps.</li>
+                <li><strong>6.5.</strong> Review and correct extreme hour values.</li>
+              </ul>
+            </li>
+            <li>Look up missing information in rosters using the individual’s email address or name.</li>
+            <li>Determine whether each row is resolvable and valid.</li>
+            <li>If a row is not resolvable or valid, delete it from the Excel file.</li>
+            <li>If a row is resolvable and valid, simplify the Math and Language Lab columns and calculate the summed decimal hours in Excel.</li>
+            <li>Compare the calculated totals with the Penji Dashboard Utilization graph.</li>
+            <li>Prepare the final file.</li>
+            <li>Send the final file to Vanessa by email.</li>
+            <li>Vanessa receives the final file.</li>
+            <li>Vanessa dispatches the file to both destinations.
+              <ul class="process-info-substeps">
+                <li><strong>15.1.</strong> Send the file to A&amp;R for enrollment blocking.</li>
+                <li><strong>15.2.</strong> Send the file to the Dean Assistant for the Dean’s Office.</li>
+              </ul>
+            </li>
+            <li>Confirm that A&amp;R has received the file.</li>
+            <li>Confirm that the Dean Assistant has received the file.</li>
+            <li>End the process.</li>
+          </ol>
+        </div>
+      </details>
 
       <figure class="process-diagram-frame">
         <button class="process-diagram-trigger" id="open-process-preview" type="button" aria-label="Open the process-flow diagram in a full-screen preview" title="Click to enlarge">
