@@ -704,6 +704,49 @@
     .process-lightbox-close:hover,
     .process-lightbox-close:focus-visible { background: rgba(255, 255, 255, 0.24); }
 
+    /* Interactive prototype preview */
+    .prototype-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 1.4fr);
+      gap: 28px;
+      align-items: center;
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+    .prototype-copy h3 { margin: 0 0 10px; color: var(--slate-950); }
+    .prototype-copy p { margin: 0; color: var(--steel-700); }
+    .prototype-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .prototype-thumbnail-trigger {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      overflow: hidden;
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius-md);
+      background: #eef3f8;
+      box-shadow: 0 10px 30px rgba(23, 32, 51, 0.12);
+      cursor: zoom-in;
+    }
+    .prototype-thumbnail {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 8px;
+      transition: transform 180ms ease;
+    }
+    .prototype-thumbnail-trigger:hover .prototype-thumbnail,
+    .prototype-thumbnail-trigger:focus-visible .prototype-thumbnail { transform: scale(1.015); }
+
     /* Interview note form and saved entries */
     .notes-intro { margin-bottom: 18px; }
     .form-grid {
@@ -809,6 +852,7 @@
        ========================================================= */
     @media (max-width: 900px) {
       .grid--members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .prototype-layout { grid-template-columns: 1fr; }
       .nav-wrap { align-items: flex-start; flex-direction: column; gap: 8px; padding: 12px 0; }
       .nav-links { width: 100%; margin-left: 0; }
       html { scroll-padding-top: 126px; }
@@ -872,6 +916,7 @@
         <a href="#project-goal-scope">Project Goal and Scope</a>
         <a href="#personas">Personas</a>
         <a href="#process-flow">Process Flow</a>
+        <a href="#prototype">Prototype</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
         <a href="#team-charter">Team Charter</a>
       </div>
@@ -1193,9 +1238,39 @@
       </dialog>
     </section>
 
-    <section class="section" id="interviews" aria-labelledby="interviews-title">
+    <section class="section" id="prototype" aria-labelledby="prototype-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">05</span>
+        <div>
+          <h2 id="prototype-title">Prototype</h2>
+          <p class="section-kicker">Explore the interactive ELAC Connect data-pipeline prototype</p>
+        </div>
+      </div>
+
+      <article class="prototype-layout">
+        <div class="prototype-copy">
+          <h3>ELAC Connect: Data Pipeline</h3>
+          <p>Preview the proposed positive-attendance reporting experience, including the Penji import, automated validation, data-cleaning, and final export workflow.</p>
+          <div class="prototype-actions">
+            <a class="button" href="https://edwardsalame711.github.io/ELAC_Connect_Data_Pipeline/" target="_blank" rel="noopener noreferrer">Open Prototype Site ↗</a>
+            <button class="button button--secondary" id="open-prototype-preview-button" type="button">View Full-Screen Preview</button>
+          </div>
+        </div>
+
+        <button class="prototype-thumbnail-trigger" id="open-prototype-preview" type="button" aria-label="Open the prototype screenshot in a full-screen preview" title="Click to enlarge">
+          <img class="prototype-thumbnail" src="prototype.png" alt="ELAC Connect data-pipeline dashboard prototype showing the reporting workflow, attention queue, and quick statistics">
+        </button>
+      </article>
+
+      <dialog class="process-lightbox" id="prototype-preview" aria-label="Full-screen ELAC Connect prototype preview">
+        <button class="process-lightbox-close" id="close-prototype-preview" type="button" aria-label="Close prototype preview">×</button>
+        <img class="process-lightbox-image" src="prototype.png" alt="Enlarged ELAC Connect data-pipeline dashboard prototype">
+      </dialog>
+    </section>
+
+    <section class="section" id="interviews" aria-labelledby="interviews-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">06</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -1244,7 +1319,7 @@
 
     <section class="section" id="team-charter" aria-labelledby="team-charter-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">06</span>
+        <span class="section-number" aria-hidden="true">07</span>
         <div>
           <h2 id="team-charter-title">Team Charter</h2>
           <p class="section-kicker">Team members and working agreements consolidated into expandable panels</p>
@@ -1367,6 +1442,23 @@
     closeProcessPreview.addEventListener("click", () => processPreview.close());
     processPreview.addEventListener("click", (event) => {
       if (event.target === processPreview) processPreview.close();
+    });
+
+    /* Full-screen preview for the prototype screenshot. */
+    const prototypePreview = document.querySelector("#prototype-preview");
+    const openPrototypePreview = document.querySelector("#open-prototype-preview");
+    const openPrototypePreviewButton = document.querySelector("#open-prototype-preview-button");
+    const closePrototypePreview = document.querySelector("#close-prototype-preview");
+
+    function showPrototypePreview() {
+      prototypePreview.showModal();
+    }
+
+    openPrototypePreview.addEventListener("click", showPrototypePreview);
+    openPrototypePreviewButton.addEventListener("click", showPrototypePreview);
+    closePrototypePreview.addEventListener("click", () => prototypePreview.close());
+    prototypePreview.addEventListener("click", (event) => {
+      if (event.target === prototypePreview) prototypePreview.close();
     });
 
     /* The interview log uses localStorage, which saves data in this browser. */
