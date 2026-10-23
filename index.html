@@ -1184,57 +1184,39 @@
       </div>
 
       <details class="accordion process-info-accordion">
-        <summary><span class="accordion-label" aria-hidden="true">INFO</span>Diagram Information and Steps 1–18</summary>
+        <summary><span class="accordion-label" aria-hidden="true">INFO</span>Diagram Information and Process Steps</summary>
         <div class="accordion-content">
           <h3>Diagram Information</h3>
-          <p>This workflow shows how staff validate and clean Penji utilization data, reconcile records against supporting sources, prepare the final file, and email it to Vanessa. Vanessa dispatches the file to A&amp;R for enrollment blocking and to the Dean Assistant for the Dean’s Office; the process ends after both recipients receive the file.</p>
+          <p>This end-of-semester workflow shows how Lab staff extract and verify Penji utilization data, correct missing information, prepare a final student-ID and hours file, and send it to the Dean or Dean Assistant for review. Once the numbers are confirmed, the student-ID list is forwarded to A&amp;R and the final file is submitted to OEIA.</p>
 
-          <h3>Steps 1–18</h3>
+          <h3>Process Steps</h3>
           <ol class="process-info-steps">
-            <li>Begin the process.</li>
-            <li>Open the required Penji tabs and supporting records.</li>
-            <li>Verify walk-ins and appointments against paper tutor logs, rosters, and Cranium Cafe or ConnexEd login records.</li>
-            <li>Correct out-of-bounds metrics, including invalid or inappropriate Zoom links.</li>
-            <li>Download the unvetted CSV file from Penji.</li>
-            <li>Scrub the CSV in Excel.
+            <li>Begin Penji data preparation at the end-of-semester trigger.</li>
+            <li>Extract Penji data for the Lab as the initial data export.</li>
+            <li>Verify walk-ins and appointments using logs and records, comparing the data against tutor log records.</li>
+            <li>Correct missing information by looking it up and completing the affected row.</li>
+            <li>Prepare the final file by gathering unique student IDs and total hours.</li>
+            <li>Send the file to the Dean or Dean Assistant to review the numbers for accuracy.</li>
+            <li>After review, distribute the approved information to both destinations.
               <ul class="process-info-substeps">
-                <li><strong>6.1.</strong> Verify IDs.</li>
-                <li><strong>6.2.</strong> Remove duplicate entries.</li>
-                <li><strong>6.3.</strong> Remove staff and test entries.</li>
-                <li><strong>6.4.</strong> Identify and correct inverted timestamps.</li>
-                <li><strong>6.5.</strong> Review and correct extreme hour values.</li>
+                <li><strong>7.1.</strong> Send the student-ID list to A&amp;R.</li>
+                <li><strong>7.2.</strong> Submit the final file to OEIA.</li>
               </ul>
             </li>
-            <li>Look up missing information in rosters using the individual’s email address or name.</li>
-            <li>Determine whether each row is resolvable and valid.</li>
-            <li>If a row is not resolvable or valid, delete it from the Excel file.</li>
-            <li>If a row is resolvable and valid, simplify the Math and Language Lab columns and calculate the summed decimal hours in Excel.</li>
-            <li>Compare the calculated totals with the Penji Dashboard Utilization graph.</li>
-            <li>Prepare the final file.</li>
-            <li>Send the final file to Vanessa by email.</li>
-            <li>Vanessa receives the final file.</li>
-            <li>Vanessa dispatches the file to both destinations.
-              <ul class="process-info-substeps">
-                <li><strong>15.1.</strong> Send the file to A&amp;R for enrollment blocking.</li>
-                <li><strong>15.2.</strong> Send the file to the Dean Assistant for the Dean’s Office.</li>
-              </ul>
-            </li>
-            <li>Confirm that A&amp;R has received the file.</li>
-            <li>Confirm that the Dean Assistant has received the file.</li>
-            <li>End the process.</li>
+            <li>End the process once utilization data has been cleared and delivered.</li>
           </ol>
         </div>
       </details>
 
       <figure class="process-diagram-frame">
         <button class="process-diagram-trigger" id="open-process-preview" type="button" aria-label="Open the process-flow diagram in a full-screen preview" title="Click to enlarge">
-          <img class="process-diagram" src="images/Blank diagram sm.jpg" alt="Penji raw-data generation process flow showing staff verification, file preparation, and distribution to Vanessa, Admissions and Records, and the Dean's Office">
+          <img class="process-diagram" src="images/Blank diagram sm.jpg" alt="End-of-semester Penji data-preparation process flow showing data extraction, verification, correction of missing information, Dean review, and distribution to A&amp;R and OEIA">
         </button>
       </figure>
 
       <dialog class="process-lightbox" id="process-preview" aria-label="Full-screen process-flow diagram preview">
         <button class="process-lightbox-close" id="close-process-preview" type="button" aria-label="Close process-flow preview">×</button>
-        <img class="process-lightbox-image" src="images/Blank diagram sm.jpg" alt="Enlarged Penji raw-data generation process flow">
+        <img class="process-lightbox-image" src="images/Blank diagram sm.jpg" alt="Enlarged end-of-semester Penji data-preparation process flow">
       </dialog>
     </section>
 
