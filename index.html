@@ -747,6 +747,91 @@
     .prototype-thumbnail-trigger:hover .prototype-thumbnail,
     .prototype-thumbnail-trigger:focus-visible .prototype-thumbnail { transform: scale(1.015); }
 
+    /* Prototype agenda */
+    .agenda-overview-grid {
+      display: grid;
+      grid-template-columns: 1.45fr repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .agenda-card { min-height: 196px; }
+    .agenda-card h3,
+    .agenda-demo-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--slate-900);
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+    .agenda-number {
+      display: inline-grid;
+      width: 36px;
+      flex: 0 0 36px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--white);
+      background: var(--slate-900);
+      border-radius: 50%;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+    .agenda-card p { margin: 0; color: var(--steel-700); }
+    .agenda-card p + p { margin-top: 6px; }
+    .agenda-card strong { color: var(--slate-900); }
+    .agenda-demo-panel {
+      margin-top: 18px;
+      padding: 28px;
+      color: var(--white);
+      background: var(--slate-900);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+    .agenda-demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .agenda-demo-heading { margin: 0; color: var(--white); }
+    .agenda-demo-heading .agenda-number { color: #5a4300; background: #f6d64c; }
+    .agenda-demo-note { margin: 0; color: #d4def7; font-weight: 600; }
+    .agenda-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .agenda-demo-step {
+      padding: 20px;
+      background: #304679;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+    }
+    .agenda-screen-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #f6d64c;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .agenda-demo-step h4 {
+      margin: 0 0 14px;
+      color: var(--white);
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+    .agenda-demo-step ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: #d4def7;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .agenda-demo-step li + li { margin-top: 5px; }
+
     /* Interview note form and saved entries */
     .notes-intro { margin-bottom: 18px; }
     .form-grid {
@@ -853,6 +938,9 @@
     @media (max-width: 900px) {
       .grid--members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .prototype-layout { grid-template-columns: 1fr; }
+      .agenda-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .agenda-overview-grid .agenda-card:first-child { grid-column: 1 / -1; }
+      .agenda-demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .nav-wrap { align-items: flex-start; flex-direction: column; gap: 8px; padding: 12px 0; }
       .nav-links { width: 100%; margin-left: 0; }
       html { scroll-padding-top: 126px; }
@@ -870,6 +958,10 @@
       .scope-grid { grid-template-columns: 1fr; }
       .scope-card--wide { grid-column: auto; }
       .scope-columns { grid-template-columns: 1fr; }
+      .agenda-overview-grid, .agenda-demo-grid { grid-template-columns: 1fr; }
+      .agenda-overview-grid .agenda-card:first-child { grid-column: auto; }
+      .agenda-demo-header { align-items: flex-start; flex-direction: column; }
+      .agenda-demo-panel { padding: 20px; }
       .card { padding: 20px; }
       .saved-note { padding-right: 20px; }
       .saved-note-actions {
@@ -917,6 +1009,7 @@
         <a href="#personas">Personas</a>
         <a href="#process-flow">Process Flow</a>
         <a href="#prototype">Prototype</a>
+        <a href="#prototype-agenda">Prototype Agenda</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
         <a href="#team-charter">Team Charter</a>
       </div>
@@ -1250,9 +1343,94 @@
       </dialog>
     </section>
 
-    <section class="section" id="interviews" aria-labelledby="interviews-title">
+    <section class="section" id="prototype-agenda" aria-labelledby="prototype-agenda-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">06</span>
+        <div>
+          <h2 id="prototype-agenda-title">Prototype Agenda</h2>
+          <p class="section-kicker">Team Rocket · ELAC Connect data-pipeline demo</p>
+        </div>
+      </div>
+
+      <div class="agenda-overview-grid">
+        <article class="card agenda-card">
+          <h3><span class="agenda-number" aria-hidden="true">1</span>Introductions</h3>
+          <p><strong>Edward:</strong> Clickable prototype and UX design</p>
+          <p><strong>Vanessa:</strong> VS Code backend</p>
+          <p><strong>Stacio:</strong> Process flow</p>
+          <p><strong>Justice:</strong> Personas and ELAC stakeholders</p>
+        </article>
+
+        <article class="card agenda-card">
+          <h3><span class="agenda-number" aria-hidden="true">2</span>What You’ll See</h3>
+          <p>A clickable, rough prototype that demonstrates the app’s main purpose and problem-solving ability.</p>
+        </article>
+
+        <article class="card agenda-card">
+          <h3><span class="agenda-number" aria-hidden="true">3</span>Meeting Goal</h3>
+          <p>Your reactions, not your approval.</p>
+        </article>
+
+        <article class="card agenda-card">
+          <h3><span class="agenda-number" aria-hidden="true">4</span>Project Goal</h3>
+          <p>Turn a Penji export into clean OIEA and A&amp;R files.</p>
+        </article>
+      </div>
+
+      <div class="agenda-demo-panel">
+        <div class="agenda-demo-header">
+          <h3 class="agenda-demo-heading"><span class="agenda-number" aria-hidden="true">5</span>The Demo, One Screen at a Time</h3>
+          <p class="agenda-demo-note">We pause after each screen for client reactions.</p>
+        </div>
+
+        <div class="agenda-demo-grid">
+          <article class="agenda-demo-step">
+            <span class="agenda-screen-label">Screen 1</span>
+            <h4>Import Penji</h4>
+            <ul>
+              <li>Upload the export</li>
+              <li>Confirm the import</li>
+              <li>Review the row summary</li>
+            </ul>
+          </article>
+
+          <article class="agenda-demo-step">
+            <span class="agenda-screen-label">Screen 2</span>
+            <h4>Manual &amp; Automated Error Correction and Validation</h4>
+            <ul>
+              <li>Run checks</li>
+              <li>Review three flagged errors</li>
+              <li>Fix by hand or use auto-fix</li>
+            </ul>
+          </article>
+
+          <article class="agenda-demo-step">
+            <span class="agenda-screen-label">Screen 3</span>
+            <h4>Second-Round Data Cleaning</h4>
+            <ul>
+              <li>Apply fixes</li>
+              <li>Compare before and after</li>
+              <li>Approve and commit changes</li>
+            </ul>
+          </article>
+
+          <article class="agenda-demo-step">
+            <span class="agenda-screen-label">Screen 4</span>
+            <h4>OIEA / A&amp;R Export</h4>
+            <ul>
+              <li>Export cleaned CSV</li>
+              <li>Generate the OIEA file</li>
+              <li>Generate the A&amp;R file</li>
+              <li>Save the cleanedPenji.xlsx file</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interviews" aria-labelledby="interviews-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">07</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -1301,7 +1479,7 @@
 
     <section class="section" id="team-charter" aria-labelledby="team-charter-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">07</span>
+        <span class="section-number" aria-hidden="true">08</span>
         <div>
           <h2 id="team-charter-title">Team Charter</h2>
           <p class="section-kicker">Team members and working agreements consolidated into expandable panels</p>
