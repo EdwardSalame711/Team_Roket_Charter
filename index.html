@@ -832,6 +832,17 @@
     }
     .agenda-demo-step li + li { margin-top: 5px; }
 
+    /* Shared change log */
+    .change-log-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .change-log-card h3 { margin: 0 0 8px; color: var(--slate-900); }
+    .change-log-card p { margin: 0; color: var(--steel-700); }
+    .change-log-card .button { flex: 0 0 auto; }
+
     /* Interview note form and saved entries */
     .notes-intro { margin-bottom: 18px; }
     .form-grid {
@@ -962,6 +973,7 @@
       .agenda-overview-grid .agenda-card:first-child { grid-column: auto; }
       .agenda-demo-header { align-items: flex-start; flex-direction: column; }
       .agenda-demo-panel { padding: 20px; }
+      .change-log-card { align-items: flex-start; flex-direction: column; }
       .card { padding: 20px; }
       .saved-note { padding-right: 20px; }
       .saved-note-actions {
@@ -1010,6 +1022,7 @@
         <a href="#process-flow">Process Flow</a>
         <a href="#prototype">Prototype</a>
         <a href="#prototype-agenda">Prototype Agenda</a>
+        <a href="#change-log">Change Log</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
         <a href="#team-charter">Team Charter</a>
       </div>
@@ -1428,9 +1441,27 @@
       </div>
     </section>
 
-    <section class="section" id="interviews" aria-labelledby="interviews-title">
+    <section class="section" id="change-log" aria-labelledby="change-log-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">07</span>
+        <div>
+          <h2 id="change-log-title">Change Log</h2>
+          <p class="section-kicker">Shared record of project updates, revisions, and open items</p>
+        </div>
+      </div>
+
+      <article class="card card--featured change-log-card">
+        <div>
+          <h3>Shared Change Log Spreadsheet</h3>
+          <p>Use the shared Google Sheet to review and track changes to the ELAC Connect project.</p>
+        </div>
+        <a class="button" href="https://docs.google.com/spreadsheets/d/1NTXn3OcFU2WhIF1xmefDX08BJG9odLW3h4xjqzxFiUo/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Open Change Log ↗</a>
+      </article>
+    </section>
+
+    <section class="section" id="interviews" aria-labelledby="interviews-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">08</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -1479,7 +1510,7 @@
 
     <section class="section" id="team-charter" aria-labelledby="team-charter-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">08</span>
+        <span class="section-number" aria-hidden="true">09</span>
         <div>
           <h2 id="team-charter-title">Team Charter</h2>
           <p class="section-kicker">Team members and working agreements consolidated into expandable panels</p>
