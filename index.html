@@ -843,6 +843,89 @@
     .change-log-card p { margin: 0; color: var(--steel-700); }
     .change-log-card .button { flex: 0 0 auto; }
 
+    /* Project status */
+    .project-status {
+      padding: clamp(24px, 4vw, 42px);
+      color: var(--white);
+      background: linear-gradient(145deg, #07172e, #0b2244);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .project-status .section-heading { margin-bottom: 26px; }
+    .project-status .section-number { color: #062149; background: #2fd2ff; }
+    .project-status h2 { color: var(--white); font-size: clamp(2rem, 5vw, 3.2rem); }
+    .project-status .section-kicker { color: #a8bddf; font-size: 1rem; }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .status-card {
+      display: flex;
+      min-height: 250px;
+      flex-direction: column;
+      padding: 24px;
+      background: rgba(15, 45, 88, 0.72);
+      border: 1px solid rgba(140, 180, 240, 0.12);
+      border-top: 4px solid #2fd2ff;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+    .status-card--current {
+      background: linear-gradient(145deg, rgba(90, 38, 31, 0.74), rgba(69, 36, 50, 0.84));
+      border-color: rgba(255, 129, 74, 0.48);
+      border-top-color: #ff7845;
+    }
+    .status-card--next {
+      background: rgba(8, 28, 58, 0.36);
+      border: 1px dashed rgba(140, 180, 240, 0.36);
+      border-top: 4px dashed #ff7845;
+    }
+    .status-card-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: #9eb4d6;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .status-card-state { color: #2fd2ff; white-space: nowrap; }
+    .status-card--current .status-card-state,
+    .status-card--next .status-card-state { color: #ff956e; }
+    .status-card h3 { margin: 0 0 14px; color: var(--white); font-size: 1.35rem; }
+    .status-card ul {
+      margin: 0;
+      padding: 0;
+      color: #d8e5fb;
+      list-style: none;
+    }
+    .status-card li {
+      position: relative;
+      padding-left: 24px;
+      line-height: 1.48;
+    }
+    .status-card li + li { margin-top: 12px; }
+    .status-card li::before {
+      position: absolute;
+      left: 0;
+      color: #2fd2ff;
+      content: "✓";
+      font-weight: 800;
+    }
+    .status-card--current li::before { content: "→"; color: #ff956e; }
+    .status-card--next li::before { content: "○"; color: #ff956e; }
+    .status-video-link {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: auto;
+      padding-top: 18px;
+      color: #78e1ff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .status-video-link:hover { color: var(--white); }
+
     /* Interview note form and saved entries */
     .notes-intro { margin-bottom: 18px; }
     .form-grid {
@@ -952,6 +1035,7 @@
       .agenda-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .agenda-overview-grid .agenda-card:first-child { grid-column: 1 / -1; }
       .agenda-demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .nav-wrap { align-items: flex-start; flex-direction: column; gap: 8px; padding: 12px 0; }
       .nav-links { width: 100%; margin-left: 0; }
       html { scroll-padding-top: 126px; }
@@ -973,6 +1057,8 @@
       .agenda-overview-grid .agenda-card:first-child { grid-column: auto; }
       .agenda-demo-header { align-items: flex-start; flex-direction: column; }
       .agenda-demo-panel { padding: 20px; }
+      .status-grid { grid-template-columns: 1fr; }
+      .status-card { min-height: auto; }
       .change-log-card { align-items: flex-start; flex-direction: column; }
       .card { padding: 20px; }
       .saved-note { padding-right: 20px; }
@@ -1022,6 +1108,7 @@
         <a href="#process-flow">Process Flow</a>
         <a href="#prototype">Prototype</a>
         <a href="#prototype-agenda">Prototype Agenda</a>
+        <a href="#project-status">Project Status</a>
         <a href="#change-log">Change Log</a>
         <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
         <a href="#team-charter">Team Charter</a>
@@ -1441,9 +1528,85 @@
       </div>
     </section>
 
-    <section class="section" id="change-log" aria-labelledby="change-log-title">
+    <section class="section project-status" id="project-status" aria-labelledby="project-status-title">
       <div class="section-heading">
         <span class="section-number" aria-hidden="true">07</span>
+        <div>
+          <h2 id="project-status-title">Project Status</h2>
+          <p class="section-kicker">Where we are now—moving from a clickable demo to a working ELAC Connect prototype.</p>
+        </div>
+      </div>
+
+      <div class="status-grid">
+        <article class="status-card">
+          <p class="status-card-meta"><span>01 · Discovery</span><span class="status-card-state">Completed</span></p>
+          <h3>Empathize</h3>
+          <ul>
+            <li>Learned how ELAC staff verify Penji attendance data and prepare reports.</li>
+            <li>Identified recurring data-cleaning and reporting challenges.</li>
+          </ul>
+        </article>
+
+        <article class="status-card">
+          <p class="status-card-meta"><span>02 · Definition</span><span class="status-card-state">Completed</span></p>
+          <h3>Define</h3>
+          <ul>
+            <li>Defined the goal: turn Penji exports into clean OIEA and A&amp;R files.</li>
+            <li>Established stakeholder needs, personas, and project scope.</li>
+          </ul>
+        </article>
+
+        <article class="status-card">
+          <p class="status-card-meta"><span>03 · Design</span><span class="status-card-state">Completed</span></p>
+          <h3>Ideate</h3>
+          <ul>
+            <li>Mapped the current process flow and data-cleaning decisions.</li>
+            <li>Designed the ELAC Connect user experience and pipeline screens.</li>
+          </ul>
+        </article>
+
+        <article class="status-card">
+          <p class="status-card-meta"><span>04 · Prototype</span><span class="status-card-state">Completed</span></p>
+          <h3>Prototype</h3>
+          <ul>
+            <li>Built a clickable demonstration of import, validation, cleaning, and export.</li>
+            <li>Prepared the interface for client review and feedback.</li>
+          </ul>
+        </article>
+
+        <article class="status-card">
+          <p class="status-card-meta"><span>05 · Client Demo</span><span class="status-card-state">Completed</span></p>
+          <h3>Test</h3>
+          <ul>
+            <li>On October 28, Team Rocket demoed the clickable prototype to Nelly at ELAC.</li>
+            <li>Nelly provided feedback and requested a working version to continue refining and polishing the tool.</li>
+          </ul>
+          <a class="status-video-link" href="https://youtu.be/uEXqfRXELPc" target="_blank" rel="noopener noreferrer">Watch the client demo ↗</a>
+        </article>
+
+        <article class="status-card status-card--current">
+          <p class="status-card-meta"><span>06 · Current Phase</span><span class="status-card-state">We are here</span></p>
+          <h3>Build</h3>
+          <ul>
+            <li>Develop a working version of the prototype for ELAC staff to use and assess.</li>
+            <li>Apply Nelly’s feedback to refine the workflow and polish the user experience.</li>
+          </ul>
+        </article>
+
+        <article class="status-card status-card--next">
+          <p class="status-card-meta"><span>07 · Next Phase</span><span class="status-card-state">Up next</span></p>
+          <h3>Deliver</h3>
+          <ul>
+            <li>Continue feedback cycles with ELAC while improving the working prototype.</li>
+            <li>Finalize a polished version and supporting project documentation.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="change-log" aria-labelledby="change-log-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">08</span>
         <div>
           <h2 id="change-log-title">Change Log</h2>
           <p class="section-kicker">Shared record of project updates, revisions, and open items</p>
@@ -1461,7 +1624,7 @@
 
     <section class="section" id="interviews" aria-labelledby="interviews-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">08</span>
+        <span class="section-number" aria-hidden="true">09</span>
         <div>
           <h2 id="interviews-title">Client Interview Notes</h2>
           <p class="section-kicker">Record feedback and follow-up items from each meeting</p>
@@ -1510,7 +1673,7 @@
 
     <section class="section" id="team-charter" aria-labelledby="team-charter-title">
       <div class="section-heading">
-        <span class="section-number" aria-hidden="true">09</span>
+        <span class="section-number" aria-hidden="true">10</span>
         <div>
           <h2 id="team-charter-title">Team Charter</h2>
           <p class="section-kicker">Team members and working agreements consolidated into expandable panels</p>
