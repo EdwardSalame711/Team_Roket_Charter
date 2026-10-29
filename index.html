@@ -123,10 +123,8 @@
       align-items: center;
       gap: 8px;
       margin-left: auto;
-      overflow-x: auto;
-      scrollbar-width: none;
+      overflow: visible;
     }
-    .nav-links::-webkit-scrollbar { display: none; }
     .nav-links a {
       padding: 8px 10px;
       color: #dce4ef;
@@ -141,6 +139,120 @@
     .nav-links a.nav-link--project:hover { color: #a9d5ff; background: rgba(255, 255, 255, 0.09); }
     .nav-links a.nav-link--highlight { color: #ff4d4d; }
     .nav-links a.nav-link--highlight:hover { color: #ff7373; background: rgba(255, 255, 255, 0.09); }
+    .nav-dropdown { position: relative; display: flex; flex: 0 0 auto; align-items: stretch; }
+    .nav-dropdown-link {
+      padding: 8px 4px 8px 10px !important;
+      border-radius: 7px 0 0 7px !important;
+    }
+    .nav-dropdown-toggle {
+      appearance: none;
+      -webkit-appearance: none;
+      display: flex;
+      width: 30px;
+      align-items: center;
+      gap: 5px;
+      justify-content: center;
+      padding: 8px 8px 8px 2px;
+      color: #dce4ef;
+      background: transparent;
+      border: 0;
+      border-radius: 0 7px 7px 0;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.7;
+      text-align: left;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 160ms ease, background 160ms ease;
+    }
+    .nav-dropdown-toggle::after { content: "⌄"; color: #a9b9d0; font-size: 0.9rem; line-height: 1; }
+    .nav-dropdown.is-open .nav-dropdown-toggle { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-dropdown.is-open .nav-dropdown-link { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-dropdown.is-open .nav-dropdown-toggle::after { content: "⌃"; }
+    .nav-dropdown-toggle:hover { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-dropdown-link:hover { color: var(--white) !important; background: rgba(255, 255, 255, 0.09) !important; }
+    .nav-dropdown-toggle:focus-visible {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.09);
+      outline: 3px solid var(--blue-500);
+      outline-offset: 3px;
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      z-index: 50;
+      top: 100%;
+      left: 0;
+      display: grid;
+      width: min(340px, calc(100vw - 32px));
+      padding: 22px;
+      background: #f8fafc;
+      border: 1px solid var(--steel-200);
+      border-top: 3px solid var(--blue-600);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      box-shadow: 0 18px 34px rgba(10, 18, 32, 0.22);
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 140ms ease, transform 140ms ease, visibility 140ms ease;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu,
+    .nav-dropdown.is-open .nav-dropdown-menu {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .nav-dropdown:hover .nav-dropdown-toggle,
+    .nav-dropdown:focus-within .nav-dropdown-toggle { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-dropdown:hover .nav-dropdown-link,
+    .nav-dropdown:focus-within .nav-dropdown-link { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+    .nav-dropdown:hover .nav-dropdown-toggle::after,
+    .nav-dropdown:focus-within .nav-dropdown-toggle::after { content: "⌃"; }
+    .nav-links > a,
+    .nav-dropdown-link,
+    .nav-dropdown-toggle { transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease; }
+    .nav-links > a:hover,
+    .nav-links > a:focus-visible,
+    .nav-dropdown-link:hover,
+    .nav-dropdown-link:focus-visible,
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown-toggle:focus-visible,
+    .nav-dropdown:hover .nav-dropdown-link,
+    .nav-dropdown:hover .nav-dropdown-toggle,
+    .nav-dropdown.is-open .nav-dropdown-link,
+    .nav-dropdown.is-open .nav-dropdown-toggle {
+      color: var(--white) !important;
+      background: rgba(255, 255, 255, 0.16) !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+    .nav-dropdown-title {
+      display: block;
+      margin: 0 0 10px;
+      color: var(--steel-500);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .nav-dropdown-menu a {
+      padding: 13px 14px;
+      color: var(--slate-900);
+      border-radius: 8px;
+      font-size: 1.04rem;
+      font-weight: 700;
+      transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      white-space: normal;
+    }
+    .nav-dropdown-menu a:hover,
+    .nav-dropdown-menu a:focus-visible {
+      color: var(--blue-700);
+      background: #dfe9ff;
+      box-shadow: inset 0 0 0 1px #c5d6ff;
+    }
 
     /* =========================================================
        3. HERO
@@ -845,26 +957,26 @@
 
     /* Project status */
     .project-status {
-      padding: clamp(24px, 4vw, 42px);
+      padding: clamp(21px, 3.4vw, 36px);
       color: var(--white);
       background: linear-gradient(145deg, #07172e, #0b2244);
       border-radius: 22px;
       box-shadow: var(--shadow);
     }
-    .project-status .section-heading { margin-bottom: 26px; }
+    .project-status .section-heading { margin-bottom: 22px; }
     .project-status .section-number { color: #062149; background: #2fd2ff; }
     .project-status h2 { color: var(--white); font-size: clamp(2rem, 5vw, 3.2rem); }
     .project-status .section-kicker { color: #a8bddf; font-size: 1rem; }
     .status-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+      gap: 15px;
     }
     .status-card {
       display: flex;
-      min-height: 250px;
+      min-height: 213px;
       flex-direction: column;
-      padding: 24px;
+      padding: 20px;
       background: rgba(15, 45, 88, 0.72);
       border: 1px solid rgba(140, 180, 240, 0.12);
       border-top: 4px solid #2fd2ff;
@@ -884,7 +996,7 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      margin: 0 0 16px;
+      margin: 0 0 13px;
       color: #9eb4d6;
       font-size: 0.82rem;
       font-weight: 700;
@@ -892,7 +1004,7 @@
     .status-card-state { color: #2fd2ff; white-space: nowrap; }
     .status-card--current .status-card-state,
     .status-card--next .status-card-state { color: #ff956e; }
-    .status-card h3 { margin: 0 0 14px; color: var(--white); font-size: 1.35rem; }
+    .status-card h3 { margin: 0 0 12px; color: var(--white); font-size: 1.35rem; }
     .status-card ul {
       margin: 0;
       padding: 0;
@@ -902,9 +1014,9 @@
     .status-card li {
       position: relative;
       padding-left: 24px;
-      line-height: 1.48;
+      line-height: 1.35;
     }
-    .status-card li + li { margin-top: 12px; }
+    .status-card li + li { margin-top: 10px; }
     .status-card li::before {
       position: absolute;
       left: 0;
@@ -918,7 +1030,7 @@
       display: inline-flex;
       width: fit-content;
       margin-top: auto;
-      padding-top: 18px;
+      padding-top: 14px;
       color: #78e1ff;
       font-size: 0.86rem;
       font-weight: 700;
@@ -1037,8 +1149,9 @@
       .agenda-demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .nav-wrap { align-items: flex-start; flex-direction: column; gap: 8px; padding: 12px 0; }
-      .nav-links { width: 100%; margin-left: 0; }
-      html { scroll-padding-top: 126px; }
+      .nav-links { width: 100%; margin-left: 0; overflow: visible; flex-wrap: wrap; }
+      .nav-dropdown-menu { right: auto; left: 0; }
+      html { scroll-padding-top: 176px; }
     }
 
     @media (max-width: 620px) {
@@ -1070,6 +1183,8 @@
         margin-top: 16px;
       }
       .nav-links a { padding-left: 6px; padding-right: 6px; }
+      .nav-dropdown-toggle { padding-left: 6px; padding-right: 6px; }
+      .nav-dropdown-menu a { padding-left: 10px; padding-right: 10px; }
       .overview-card { padding: 20px 20px 20px 72px; }
       .overview-icon { top: 18px; left: 20px; }
     }
@@ -1102,15 +1217,36 @@
         <span>Team Rocket</span>
       </a>
       <div class="nav-links">
-        <a href="#client-overview" class="nav-link--project">Client Overview</a>
-        <a href="#project-goal-scope">Project Goal and Scope</a>
-        <a href="#personas">Personas</a>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-link" href="#client-overview">Project</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open Project menu" aria-expanded="false" aria-controls="project-menu"></button>
+          <div class="nav-dropdown-menu" id="project-menu">
+            <span class="nav-dropdown-title">Explore the ELAC project</span>
+            <a href="#client-overview" class="nav-link--project">Client Overview</a>
+            <a href="#project-goal-scope">Project Goal and Scope</a>
+            <a href="#personas">Personas</a>
+          </div>
+        </div>
         <a href="#process-flow">Process Flow</a>
-        <a href="#prototype">Prototype</a>
-        <a href="#prototype-agenda">Prototype Agenda</a>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-link" href="#prototype">Prototype</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open Prototype menu" aria-expanded="false" aria-controls="prototype-menu"></button>
+          <div class="nav-dropdown-menu" id="prototype-menu">
+            <span class="nav-dropdown-title">Explore the prototype</span>
+            <a href="#prototype">Prototype</a>
+            <a href="#prototype-agenda">Prototype Agenda</a>
+          </div>
+        </div>
         <a href="#project-status">Project Status</a>
-        <a href="#change-log">Change Log</a>
-        <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
+        <div class="nav-dropdown">
+          <a class="nav-dropdown-link" href="#change-log">Change Log</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open Change Log menu" aria-expanded="false" aria-controls="change-log-menu"></button>
+          <div class="nav-dropdown-menu" id="change-log-menu">
+            <span class="nav-dropdown-title">Project records</span>
+            <a href="#change-log">Change Log</a>
+            <a href="#interviews" class="nav-link--highlight">Interview Notes</a>
+          </div>
+        </div>
         <a href="#team-charter">Team Charter</a>
       </div>
     </nav>
@@ -1787,6 +1923,41 @@
   </footer>
 
   <script>
+    /* Top-navigation dropdown menus. */
+    const navDropdowns = document.querySelectorAll(".nav-dropdown");
+
+    function closeNavDropdown(dropdown) {
+      const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+      dropdown.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    navDropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+      const menu = dropdown.querySelector(".nav-dropdown-menu");
+
+      toggle.addEventListener("click", () => {
+        const willOpen = !dropdown.classList.contains("is-open");
+        navDropdowns.forEach(closeNavDropdown);
+        if (willOpen) {
+          dropdown.classList.add("is-open");
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      });
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => closeNavDropdown(dropdown));
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".nav-dropdown")) navDropdowns.forEach(closeNavDropdown);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") navDropdowns.forEach(closeNavDropdown);
+    });
+
     /* Full-screen preview for the process-flow diagram. */
     const processPreview = document.querySelector("#process-preview");
     const openProcessPreview = document.querySelector("#open-process-preview");
